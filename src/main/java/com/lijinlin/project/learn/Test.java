@@ -20,6 +20,7 @@ public class Test {
        System.out.println("p2.name" + p2.name + "p2.deepCloneableTarget="+p2.deepCloneAbleTarget.hashCode());
        System.out.println("p.name" + p.name.hashCode() + "p.deepCloneableTarget="+p.deepCloneAbleTarget.hashCode());
        System.out.println("p2.name" + p2.name.hashCode() + "p2.deepCloneableTarget="+p2.deepCloneAbleTarget.hashCode());*/
+
     }
 
     private static List<Animal> sortPurchaseNum(List<Animal> list){
