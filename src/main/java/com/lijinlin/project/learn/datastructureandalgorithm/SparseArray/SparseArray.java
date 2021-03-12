@@ -1,5 +1,7 @@
 package com.lijinlin.project.learn.datastructureandalgorithm.SparseArray;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 public class SparseArray {
     public static void main(String[] args) {
         //1创建一个原始的二维数组 11 * 11
@@ -33,17 +35,21 @@ public class SparseArray {
         sparseArray[0][1] = columnLength;
         sparseArray[0][2] = sum;
         //遍历二维数组，把值放入稀疏数组
-        int count = 1;
+        int count = 0;
         for (int i = 0; i < rowLength; i++) {
             for (int j = 0; j < columnLength; j++) {
                 if (chessArr1[i][j] != 0) {
+                    count++;
                     sparseArray[count][0] = i;
                     sparseArray[count][1] = j;
                     sparseArray[count][2] = chessArr1[i][j];
-                    count = count++;
                 }
             }
         }
-        System.out.print(sparseArray);
+        System.out.println("得到稀疏数组为~~~~~");
+        for(int i = 0;i < sparseArray.length;i++){
+            System.out.printf("%d\t%d\t%d\t",sparseArray[i][0],sparseArray[i][1],sparseArray[i][2]);
+            System.out.println();
+        }
     }
 }
