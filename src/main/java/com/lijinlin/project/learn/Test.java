@@ -7,9 +7,11 @@ import static java.util.Objects.hash;
 
 public class Test {
     public static void main(String[] args)  throws Exception{
-        System.out.println(hash("帅丙"));
-        System.out.println(hash("丙帅"));
-        HashMap map=new HashMap();
+        int[] arr = new int[3];
+        arr[0] = 1;
+        arr[1] = 1;
+        arr[2] = 1;
+        arr[3] = 1;
        /*DeepProtoType p = new DeepProtoType();
        p.name="松江";
        p.deepCloneAbleTarget = new DeepCloneAbleTarget("大牛","大牛的类");

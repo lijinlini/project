@@ -9,6 +9,7 @@ public class SparseArray {
         int chessArr1[][] = new int[11][11];
         chessArr1[1][2] = 1;
         chessArr1[2][3] = 2;
+        chessArr1[4][5] = 2;
         //输出原始的二维数组
         for (int[] row : chessArr1) {
             for (int data : row) {
@@ -47,8 +48,22 @@ public class SparseArray {
             }
         }
         System.out.println("得到稀疏数组为~~~~~");
-        for(int i = 0;i < sparseArray.length;i++){
-            System.out.printf("%d\t%d\t%d\t",sparseArray[i][0],sparseArray[i][1],sparseArray[i][2]);
+        for (int i = 0; i < sparseArray.length; i++) {
+            System.out.printf("%d\t%d\t%d\t\n", sparseArray[i][0], sparseArray[i][1], sparseArray[i][2]);
+        }
+        //将稀疏数组恢复成原始的二维数组
+        int chessArr2[][] = new int[sparseArray[0][0]][sparseArray[0][1]];
+        //把新的二位数组都设置成0
+
+        //遍历稀疏数组恢复成二维数组
+        for (int i = 1; i < sparseArray.length; i++) {
+            chessArr2[sparseArray[i][0]][sparseArray[i][1]] = sparseArray[i][2];
+        }
+        System.out.println("恢复后的二维数组~~~~~");
+        for (int[] row : chessArr2) {
+            for (int data : row) {
+                System.out.printf("%d\t", data);
+            }
             System.out.println();
         }
     }
