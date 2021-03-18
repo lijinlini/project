@@ -20,7 +20,7 @@ class CircleSingleLinkedList {
     //小孩报数前，先让firt和helper移动k-1次
     //nums = 5有5个小孩
     //startNo=1，从第几个小孩开始报数
-    //countNum=2，数两下
+    //countNum=2，数两下 出圈
     public void countBoy(int startNo, int countNum, int nums) {
         if (first == null || startNo < 1 || startNo > nums) {
             System.out.println("输入参数有误请重新输入");
