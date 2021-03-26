@@ -1,8 +1,5 @@
 package com.lijinlin.project.learn.datastructureandalgorithm.queue;
 
-import sun.invoke.empty.Empty;
-
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class ArrayQueueDemo {
