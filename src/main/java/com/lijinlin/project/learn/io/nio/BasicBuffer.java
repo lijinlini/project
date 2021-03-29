@@ -2,6 +2,7 @@ package com.lijinlin.project.learn.io.nio;
 
 import java.nio.Buffer;
 import java.nio.IntBuffer;
+import java.nio.channels.Channel;
 
 public class BasicBuffer {
     public static void main(String[] args) {
