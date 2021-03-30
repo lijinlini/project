@@ -36,7 +36,8 @@ public class GroupChatServer {
     public void listen() {
         try {
             while (true) {
-                int count = selector.select(2000);
+                //没有时间就会阻塞在这里
+                int count = selector.select();
                 if (count > 0) {
                     //有事件要处理
                     //遍历得到selectionKey集合
@@ -47,6 +48,7 @@ public class GroupChatServer {
                         //如果监听到accept(连接事件)
                         if (key.isAcceptable()) {
                             SocketChannel sc = listenChannel.accept();
+                            sc.configureBlocking(false);
                             //将sc注册到seletor
                             sc.register(selector, SelectionKey.OP_READ);
                             //提示
@@ -124,6 +126,8 @@ public class GroupChatServer {
     }
 
     public static void main(String[] args) {
-
+        //创建一个服务器对象
+        GroupChatServer groupChatServer = new GroupChatServer();
+        groupChatServer.listen();
     }
 }
