@@ -90,7 +90,7 @@ public class GroupChatServer {
                 //输出该消息
                 System.out.println("form 客户端" + msg);
 
-                //todo 向其他客户端转发小心（排除自己）
+                //向其他客户端转发小心（排除自己）
                 sendInfoToOtherClients(msg,channel);
             }
         } catch (IOException e) {
@@ -107,6 +107,7 @@ public class GroupChatServer {
 
     private void sendInfoToOtherClients(String msg, SocketChannel self) throws IOException {
         System.out.println("服务器转发消息中。。。。。");
+        System.out.println("服务器转发数据给客户端："+Thread.currentThread().getName());
         //遍历所有注册到selector中的channel，并排除self
         for (SelectionKey key : selector.keys()) {
             //通过key取出通道 用接口的方式接收channel
