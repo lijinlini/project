@@ -1,17 +1,15 @@
 package com.lijinlin.project.learn;
 
 
+import io.netty.util.NettyRuntime;
+
 import java.util.*;
 
 import static java.util.Objects.hash;
 
 public class Test {
     public static void main(String[] args)  throws Exception{
-        int[] arr = new int[3];
-        arr[0] = 1;
-        arr[1] = 1;
-        arr[2] = 1;
-        arr[3] = 1;
+        System.out.println(NettyRuntime.availableProcessors());
        /*DeepProtoType p = new DeepProtoType();
        p.name="松江";
        p.deepCloneAbleTarget = new DeepCloneAbleTarget("大牛","大牛的类");
