@@ -24,7 +24,7 @@ public class NettyServer {
                     .channel(NioServerSocketChannel.class)//使用NioSocketChannel作为服务器的通道时间
                     .option(ChannelOption.SO_BACKLOG,128)//设置线程队列得到连接个数
                     .childOption(ChannelOption.SO_KEEPALIVE,true)//设置保持活动连接状态
-                    .handler(null)//该handler对应bossGroup childHandler对应 workerGroup
+                   // .handler(null)//该handler对应bossGroup childHandler对应 workerGroup
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         //给pipeline设置处理器
                         @Override

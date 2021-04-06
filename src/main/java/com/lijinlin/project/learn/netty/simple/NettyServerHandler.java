@@ -25,7 +25,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
          * 比如这里我们有一个非常耗时的业务 ->异步执行 ->提交该channel对应的NIOEventLoop的taskQueue中
          * 解决方案1用户程序自定义的普通任务
          */
-        ctx.channel().eventLoop().execute(new Runnable() {
+        /*ctx.channel().eventLoop().execute(new Runnable() {
             @Override
             public void run() {
                 try{
@@ -47,9 +47,9 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
                 }
             }
         });
-        /**
+        *//**
          * 解决方案2用户自定义定时任务 -> 该任务提交到scheduleTaskQueue中
-         */
+         *//*
         ctx.channel().eventLoop().schedule(new Runnable() {
             @Override
             public void run() {
@@ -61,16 +61,16 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
                 }
             }
         },5, TimeUnit.SECONDS);
-        /**
+        *//**
          * 解决方案3：非当前Reactor线程调用channel的各种方法
-         */
-        System.out.println("go on ....");
-        /*System.out.println("服务器读取线程 " + Thread.currentThread().getName());
+         *//*
+        System.out.println("go on ....");*/
+        System.out.println("服务器读取线程 " + Thread.currentThread().getName() + "channel = " + ctx.channel());
         System.out.println("server ctx = " + ctx);
         //将 msg转成一个ByteBuf,这个ByteBuf是Netty提供的，不是NIO提供的，这里性能更高
         ByteBuf buf = (ByteBuf)msg;
         System.out.println("客户端发送消息是：" + buf.toString(CharsetUtil.UTF_8));
-        System.out.println("客户端地址" + ctx.channel().remoteAddress());*/
+        System.out.println("客户端地址" + ctx.channel().remoteAddress());
 
     }
 
