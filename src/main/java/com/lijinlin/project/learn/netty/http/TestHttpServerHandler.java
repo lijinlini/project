@@ -20,6 +20,7 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
         //判断 msg是不是httprequest请求
         if(msg instanceof HttpRequest){
+            System.out.println("ctx 类型 = " + ctx.getClass());
             System.out.println("pipelin hashcode = " + ctx.pipeline().hashCode()+ " TestHttpServerHandler hashcode = " + this.hashCode());
 
             System.out.println("msg 类型 = " + msg.getClass());
