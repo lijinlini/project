@@ -10,6 +10,8 @@ import jdk.nashorn.internal.ir.CallNode;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> {
     //定义一个channel组，管理所有的channel
@@ -17,6 +19,9 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+    //点对点聊天使用一个hashmap管理
+    public static Map<String,Channel> channels = new HashMap<>();
+    public static Map<User,Channel> channels2 = new HashMap<>();
     //handlerAdded表示连接建立，一旦链接，第一个被执行
     //将当前channel加入到channelGroup
     @Override
@@ -28,6 +33,10 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
          */
         channelGroup.writeAndFlush("[客户端]" + channel.remoteAddress() + "加入聊天" + sdf.format(new Date()) + "\n");
         channelGroup.add(channel);
+        //id100对应用户的id
+        //channels.put("id100",channel);
+
+        //channels2.put(new User(10,"123"),channel);
     }
 
     //断开连接，将某某客户端离开信息推送给当前在线客户 会让当前channel从group中移除
