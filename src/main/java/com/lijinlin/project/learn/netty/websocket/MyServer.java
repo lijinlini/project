@@ -10,6 +10,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
+import io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.stream.ChunkedWriteHandler;
@@ -43,6 +44,17 @@ public class MyServer {
                             2.这就是为什么，当浏览器发送大量数据时，就会发出多次http请求的原因
                              */
                             pipeline.addLast(new HttpObjectAggregator(8192));
+                            /*
+                             *说明
+                             * 1. 对应websocket，它的数据是以帧（frame）形式传播
+                             * 2.可以看到WebSocketFrame下面有六个子类
+                             * 3.浏览器请求时 ws://localhost:7000/hello
+                             * 4.WebSocketServerProtocolHandler核心功能是将http协议升级为ws协议，保持长连接
+                             */
+                            pipeline.addLast(new WebSocketServerProtocolHandler("/hello"));
+
+                            //自定义的handler，处理业务逻辑
+                            pipeline.addLast(new MyTextWebSocketFrameHandler());
                         }
                     });
             //启动服务器
