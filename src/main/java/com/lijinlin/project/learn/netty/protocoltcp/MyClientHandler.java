@@ -21,21 +21,18 @@ public class MyClientHandler extends SimpleChannelInboundHandler<MessageProtocol
             MessageProtocol messageProtocol = new MessageProtocol();
             messageProtocol.setLen(length);
             messageProtocol.setContent(content);
-
-
-
             ctx.writeAndFlush(messageProtocol);
         }
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageProtocol msg) throws Exception {
-       /* byte[] buffer = new byte[msg.readableBytes()];
-        msg.readBytes(buffer);
-        String message = new String(buffer, Charset.forName("utf-8"));
-        System.out.println("客户端接收到消息=" + message);
-        System.out.println("客户端接收消息数量=" + (++this.count));*/
-
+        int len = msg.getLen();
+        byte[] content = msg.getContent();
+        System.out.println("客户端接收到消息如下");
+        System.out.println("长度=" + len);
+        System.out.println("内容=" + new String(content,Charset.forName("utf-8")));
+        System.out.println("客户端接收消息数量=" + (++this.count));
     }
 
     @Override

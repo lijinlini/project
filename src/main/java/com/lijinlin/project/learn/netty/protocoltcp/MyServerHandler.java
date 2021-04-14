@@ -26,6 +26,14 @@ public class MyServerHandler extends SimpleChannelInboundHandler<MessageProtocol
         System.out.println("长度="+len);
         System.out.println("内容="+new String(content,Charset.forName("utf-8")));
         System.out.println("服务器接收到协议包数量=" + (this.count++));
-        // todo 回复小心
+        //回复消息
+        String responseContent = UUID.randomUUID().toString();
+        int responseLen = responseContent.getBytes("utf-8").length;
+        byte[] responseContent2 = responseContent.getBytes("utf-8");
+        //构建一个协议包
+        MessageProtocol messageProtocol = new MessageProtocol();
+        messageProtocol.setLen(responseLen);
+        messageProtocol.setContent(responseContent2);
+        ctx.writeAndFlush(messageProtocol);
     }
 }
