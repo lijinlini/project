@@ -13,6 +13,7 @@ public class MyClientHandler extends SimpleChannelInboundHandler<MessageProtocol
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("MyClientHandler channelActive");
         //使用客户端发送十条数据 今天天气冷，吃火锅
         for (int i = 0; i < 5; i++) {
             String mes = "今天天气冷，吃火锅";
