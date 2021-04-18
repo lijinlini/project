@@ -35,7 +35,7 @@ public class MyServer {
                         // * read, write, or both operation for a while.
                         //6当IdleStateEvent触发后，就会传递给管道的下一个handler去处理，通过调用（触发）下一个handler
                         //的userEventTiggered,在该方法中去处理IdleStateEvent
-                        pipeline.addLast(new IdleStateHandler(13,5,7, TimeUnit.SECONDS));
+                        pipeline.addLast(new IdleStateHandler(5,100000,100000, TimeUnit.SECONDS));
 
                         //加入一个对空闲检测进一步处理的自定义的handler
                         pipeline.addLast(new MyServerHandler());
