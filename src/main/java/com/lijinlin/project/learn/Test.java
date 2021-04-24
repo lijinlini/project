@@ -9,33 +9,34 @@ import static java.util.Objects.hash;
 
 public class Test {
     public static void main(String[] args)  throws Exception{
-        System.out.println(NettyRuntime.availableProcessors());
-       /*DeepProtoType p = new DeepProtoType();
-       p.name="松江";
-       p.deepCloneAbleTarget = new DeepCloneAbleTarget("大牛","大牛的类");
-       //DeepProtoType p2 = (DeepProtoType)p.clone();
-        DeepProtoType p2 = (DeepProtoType)p.deepClone();
+      new Thread(()->{
+          Test t = new Test();
+          t.testMethod();
 
-       System.out.println("p.name" + p.name + "p.deepCloneableTarget="+p.deepCloneAbleTarget.hashCode());
-       System.out.println("p2.name" + p2.name + "p2.deepCloneableTarget="+p2.deepCloneAbleTarget.hashCode());
-       System.out.println("p.name" + p.name.hashCode() + "p.deepCloneableTarget="+p.deepCloneAbleTarget.hashCode());
-       System.out.println("p2.name" + p2.name.hashCode() + "p2.deepCloneableTarget="+p2.deepCloneAbleTarget.hashCode());*/
+      }).start();
 
+        new Thread(()->{
+            Test t = new Test();
+            t.testMethod();
+        }).start();
+
+        new Thread(()->{
+            Test t = new Test();
+            t.testMethod();
+        }).start();
     }
 
-    private static List<Animal> sortPurchaseNum(List<Animal> list){
-        List<Animal> preList = new ArrayList<>();
-        List<Animal> behindList = new ArrayList<>();
-        for(Animal purchaseApplyProduct : list){
-            if(purchaseApplyProduct.getLegCount() == 0){
-                preList.add(purchaseApplyProduct);
-            }else{
-                behindList.add(purchaseApplyProduct);
-            }
+    public void testMethod(){
+        int a = 0;
+        B b = new B();
+    }
+
+    class B{
+        public B() {
         }
-        preList.addAll(behindList);
-        return preList;
+
     }
+
 }
 
 

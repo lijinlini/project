@@ -18,12 +18,36 @@
 		<java.version>1.8</java.version>
 	</properties>
 
+	<!--<profiles>
+		<profile>
+			<id>dev</id>
+			<properties>
+				<profileActive>
+					dev
+				</profileActive>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<profileActive>
+					test
+				</profileActive>
+			</properties>
+		</profile>
+	</profiles>-->
+
 	<dependencies>
+		<!--启动项目需要 start-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+		<!--启动项目需要 end-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
