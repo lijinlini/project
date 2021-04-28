@@ -69,6 +69,23 @@
 		</dependency>
 		<!--日志end-->
 
+
+		<!--Jedis需要的依赖 https://mvnrepository.com/artifact/redis.clients/jedis -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+		<!--end-->
+		<!--fastjson-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.62</version>
+		</dependency>
+		<!--end-->
+
+
 	</dependencies>
 
 	<build>
