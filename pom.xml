@@ -85,6 +85,13 @@
 		</dependency>
 		<!--end-->
 
+		<!--查看java对象内存布局工具JOL-->
+		<dependency>
+			<groupId>org.openjdk.jol</groupId>
+			<artifactId>jol-core</artifactId>
+			<version>0.9</version>
+		</dependency>
+		<!--end-->
 
 	</dependencies>
 
