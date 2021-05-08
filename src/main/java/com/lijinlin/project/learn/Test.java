@@ -1,42 +1,18 @@
 package com.lijinlin.project.learn;
 
-
-import io.netty.util.NettyRuntime;
-
-import java.util.*;
-
-import static java.util.Objects.hash;
+import org.openjdk.jol.info.ClassLayout;
 
 public class Test {
-    public static void main(String[] args)  throws Exception{
-      new Thread(()->{
-          Test t = new Test();
-          t.testMethod();
-
-      }).start();
-
-        new Thread(()->{
-            Test t = new Test();
-            t.testMethod();
-        }).start();
-
-        new Thread(()->{
-            Test t = new Test();
-            t.testMethod();
-        }).start();
-    }
-
-    public void testMethod(){
-        int a = 0;
-        B b = new B();
-    }
-
-    class B{
-        public B() {
+    public static void main(String[] args) throws Exception {
+        Object o = new Object();
+        System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        o = "存在着X从";
+        System.out.println(ClassLayout.parseInstance(o).toPrintable());
+        synchronized (o) {
+            System.out.println(ClassLayout.parseInstance(o).toPrintable());
         }
 
     }
-
 }
 
 
