@@ -69,7 +69,7 @@ public class ProducerAndConsumerMyQueue {
                 //如果消费掉了就继续生产
                 queue.add(e);
                 count++;
-                unFull.signal();
+                unEmpty.signal();
             } catch (Exception ex) {
                 ex.printStackTrace();
             } finally {
@@ -89,7 +89,7 @@ public class ProducerAndConsumerMyQueue {
                 //可以消费
                 e = queue.pop();
                 count--;
-                unEmpty.signal();
+                unFull.signal();
             } catch (Exception ex) {
                 ex.printStackTrace();
             } finally {
