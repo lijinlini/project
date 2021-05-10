@@ -4,6 +4,7 @@ import java.util.concurrent.*;
 
 public class AbortPolicyDemo {
     public static void main(String[] args) {
+        Object o = new Object();
         try{
             //直接抛出异常阻止系统正常运行
             ExecutorService threadPool = new ThreadPoolExecutor(2, 6, 1,
