@@ -87,8 +87,6 @@ public class SortByLayer {
         }
         return res;
     }
-
-
     //有下一个节点的二叉树
     static class TreeNode {
         public int value;
