@@ -1,21 +1,19 @@
 package com.lijinlin.project.learn;
 
-public class Test2 {
-    //常规单例模式
-    private Sigletion sigletion = null;
-    class Sigletion{
+import java.math.BigDecimal;
 
+public class Test2 {
+    //特大bigDecimal
+
+    public static void main(String[] args) {
+        String a = "3061865697021866349834754500623720187151201913911922071566643430516109139719279597445196769924048521303965046156630427133123142195271306186569702186634983475450062372018715120191391192207156664343051610913971927959744519676992404852130396504615663042713312314219527";
+        String b = "3061865697021866349834754500623720187151201913911922071566643430516109139719279597445196769924048521303965046156630427133123142195271306186569702186634983475450062372018715120191391192207156664343051610913971927959744519676992404852130396504615663042713312314219527";
+        add(a,b);
     }
-    public Sigletion getSigletion() {
-        //通过dcl实现
-        if(sigletion == null){
-            synchronized (this){
-                if(sigletion == null){
-                    sigletion = new Sigletion();
-                    return sigletion;
-                }
-            }
-        }
-        return sigletion;
+    public static BigDecimal add(String a,String b){
+        BigDecimal a1 = new BigDecimal(a);
+        BigDecimal b1 = new BigDecimal(b);
+        System.out.println(a1.add(b1));
+        return a1;
     }
 }

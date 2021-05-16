@@ -32,6 +32,8 @@ public class Test {
         treeNode5.right = treeNode11;
 
         sortByLayer(treeNode1);
+
+        
     }
 
     //二叉树层序遍历
