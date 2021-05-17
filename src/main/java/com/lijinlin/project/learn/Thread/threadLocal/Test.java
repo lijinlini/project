@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.Thread;
+package com.lijinlin.project.learn.Thread.threadLocal;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

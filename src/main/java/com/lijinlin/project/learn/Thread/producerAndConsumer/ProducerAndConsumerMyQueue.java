@@ -1,7 +1,6 @@
-package com.lijinlin.project.learn;
+package com.lijinlin.project.learn.Thread.producerAndConsumer;
 
 import java.util.LinkedList;
-import java.util.Stack;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

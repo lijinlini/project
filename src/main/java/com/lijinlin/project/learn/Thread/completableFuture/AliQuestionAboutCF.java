@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.Thread;
+package com.lijinlin.project.learn.Thread.completableFuture;
 
 import java.awt.*;
 import java.util.concurrent.CompletableFuture;

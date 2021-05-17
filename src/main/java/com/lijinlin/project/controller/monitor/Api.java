@@ -92,24 +92,26 @@ public class Api {
         //System.out.println(fetchStream());
         //1获取身份认证
         AuthResponse res = auth();
+
+
         //2根据部门编号获取设备信息 主要获取deviceId 、deviceSerial、channelNo
-      /*  String deptNoStrs = getDepartList();
+        String deptNoStrs = getDepartList();
         JSONObject jsonObject = JSON.parseObject(deptNoStrs);
         Object data = jsonObject.get("data");
        // System.out.println(data);
         //storeNo S003349
         String deviceStrs = getDeviceListByDeptNo("S003349");
-        System.out.println(JSON.parseObject(deviceStrs));*/
+        System.out.println(JSON.parseObject(deviceStrs));
         //通过标准流预览
-        /*Map<String,Object> param = new HashMap<>();
+        Map<String,Object> param = new HashMap<>();
         param.put("channelIds","62bf52d94863449ba5600c7db4e79283");
         String str = doPost(LIVI_OPEN, param);
-        System.out.println("-------" + str);*/
-
-        String str = doGet(LIVE_ADDRESS, new HashMap<String, Object>() {{
-            put("channelId", "62bf52d94863449ba5600c7db4e79283");
-        }});
         System.out.println("-------" + str);
+
+        String str1 = doGet(LIVE_ADDRESS, new HashMap<String, Object>() {{
+            put("channelId", "bbe9a79682fe419d8c36afd371f7835c");
+        }});
+        System.out.println("-------" + str1);
         //-------{"code":200,"message":"操作成功","data":[{"deviceSerial":"D77907823","channelNo":19,"ret":"200","desc":"开通成功!"}]}
 
     }

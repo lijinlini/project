@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn;
+package com.lijinlin.project.learn.Thread.producerAndConsumer;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;

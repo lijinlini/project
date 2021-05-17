@@ -2,12 +2,22 @@ package com.lijinlin.project.learn;
 
 import org.openjdk.jol.info.ClassLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Test {
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
+
+
     public static void main(String[] args) throws Exception {
-        TreeNode treeNode1 = new TreeNode(1);
+        System.out.println(DATE_FORMAT_THREAD_LOCAL.get().format(new Date()));
+
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+        System.out.println(sd.format(new Date()));
+
+        /*TreeNode treeNode1 = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
         TreeNode treeNode3 = new TreeNode(3);
         TreeNode treeNode4 = new TreeNode(4);
@@ -31,7 +41,7 @@ public class Test {
         treeNode5.left = treeNode10;
         treeNode5.right = treeNode11;
 
-        sortByLayer(treeNode1);
+        sortByLayer(treeNode1);*/
 
         
     }
