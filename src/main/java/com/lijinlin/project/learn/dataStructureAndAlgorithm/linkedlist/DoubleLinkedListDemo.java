@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.linkedlist;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.linkedlist;
 
 public class DoubleLinkedListDemo {
     public static void main(String[] args) {

@@ -1,6 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.SparseArray;
-
-import ch.qos.logback.core.net.SyslogOutputStream;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.sparseArray;
 
 public class SparseArray {
     public static void main(String[] args) {

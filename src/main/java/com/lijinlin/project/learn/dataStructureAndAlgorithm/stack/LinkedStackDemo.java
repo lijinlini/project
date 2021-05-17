@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.stack;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.stack;
 
 import java.util.LinkedList;
 import java.util.Scanner;

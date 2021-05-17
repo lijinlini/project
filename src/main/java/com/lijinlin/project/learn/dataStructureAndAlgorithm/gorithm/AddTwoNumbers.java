@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.gorithm;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.gorithm;
 
 /**
  * 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，

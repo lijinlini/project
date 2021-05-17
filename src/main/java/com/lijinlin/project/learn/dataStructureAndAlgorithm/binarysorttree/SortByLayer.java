@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.binarysorttree;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.binarysorttree;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

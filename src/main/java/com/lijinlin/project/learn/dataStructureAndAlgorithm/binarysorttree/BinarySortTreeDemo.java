@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.binarysorttree;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.binarysorttree;
 
 public class BinarySortTreeDemo {
     public static void main(String[] args) {

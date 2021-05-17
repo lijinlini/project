@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.datastructureandalgorithm.string;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.string;
 
 /**
  * @author lijinlin
