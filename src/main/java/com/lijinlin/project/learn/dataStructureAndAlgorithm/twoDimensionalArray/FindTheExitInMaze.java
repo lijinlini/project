@@ -23,7 +23,7 @@ public class FindTheExitInMaze {
             System.out.println();
         }*/
 
-        setWay(map,1,1);
+        setWayURDL(map,1,1);
 
         System.out.println("输出路径:");
         for (int i = 0; i < 8; i++) {
@@ -63,6 +63,50 @@ public class FindTheExitInMaze {
                     //往下走
                     return true;
                 }else if(setWay(map,i,j-1)){
+                    //往左走
+                    return true;
+                }
+                else {
+                    map[i][j] = 3;
+                    return false;
+                }
+            }else {
+                //当前节点走过了就返回false
+                return false;
+            }
+        }
+
+    }
+
+
+    /**
+     * 修改找路策略，改成上右下左
+     * @author lijinlin
+     * @date 2021/6/2 9:25
+ * @param map
+ * @param i
+ * @param j
+ * @return java.lang.Boolean
+     */
+    public static Boolean setWayURDL(int[][] map,int i,int j){
+        if(map[6][5] == 2){
+            //说明已经走到终点了
+            return true;
+        }else{
+            //当前节点没有走过
+            if(map[i][j] == 0){
+                //先假设当前节点可以走
+                map[i][j] = 2;
+                if(setWayURDL(map,i-1,j)){
+                    //往上走
+                    return true;
+                }else if(setWayURDL(map,i,j+1)){
+                    //往右走
+                    return true;
+                }else if(setWayURDL(map,i+1,j)){
+                    //往下走
+                    return true;
+                }else if(setWayURDL(map,i,j-1)){
                     //往左走
                     return true;
                 }

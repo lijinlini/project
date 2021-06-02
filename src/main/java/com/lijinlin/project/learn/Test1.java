@@ -1,12 +1,25 @@
 package com.lijinlin.project.learn;
 
 import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.Stack;
 
 public class Test1 {
     public static void main(String[] args) {
-        String str = "()[]{}";
-        System.out.println(isTrue(str));
+        Hashtable hashTable = new Hashtable<String,Integer>();
+        hashTable.put("a",1);
+        hashTable.put("a",2);
+        hashTable.put("b",2);
+        Set<Map.Entry<String,Integer>> set =  hashTable.entrySet();
+        for(Iterator<String> iterator = hashTable.keySet().iterator();iterator.hasNext();){
+            String key = iterator.next();
+            System.out.println("key-----"+key);
+            System.out.println("value--------"+hashTable.get(key));
+        }
+
     }
 
     //给定一个 字符串"(){}[]"判断字符串是否有效

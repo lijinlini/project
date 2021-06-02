@@ -43,7 +43,7 @@ public class Test {
 
         sortByLayer(treeNode1);*/
 
-        
+
     }
 
     //二叉树层序遍历

@@ -93,27 +93,6 @@ public class Api {
         //1获取身份认证
         AuthResponse res = auth();
 
-
-        //2根据部门编号获取设备信息 主要获取deviceId 、deviceSerial、channelNo
-        String deptNoStrs = getDepartList();
-        JSONObject jsonObject = JSON.parseObject(deptNoStrs);
-        Object data = jsonObject.get("data");
-       // System.out.println(data);
-        //storeNo S003349
-        String deviceStrs = getDeviceListByDeptNo("S003349");
-        System.out.println(JSON.parseObject(deviceStrs));
-        //通过标准流预览
-        Map<String,Object> param = new HashMap<>();
-        param.put("channelIds","62bf52d94863449ba5600c7db4e79283");
-        String str = doPost(LIVI_OPEN, param);
-        System.out.println("-------" + str);
-
-        String str1 = doGet(LIVE_ADDRESS, new HashMap<String, Object>() {{
-            put("channelId", "bbe9a79682fe419d8c36afd371f7835c");
-        }});
-        System.out.println("-------" + str1);
-        //-------{"code":200,"message":"操作成功","data":[{"deviceSerial":"D77907823","channelNo":19,"ret":"200","desc":"开通成功!"}]}
-
     }
 
     public static String doPost(String url, String contentType, String jsonString) throws Exception {
@@ -268,7 +247,8 @@ public class Api {
 
         public SSLClient() throws Exception {
             super();
-            SSLContext ctx = SSLContext.getInstance("TLS");
+            SSLContext ctx = SSLContext.getInstance("SSL");
+            System.out.println("SSL版本" + ctx.getProtocol());
             X509TrustManager tm = new X509TrustManager() {
                 @Override
                 public void checkClientTrusted(X509Certificate[] chain,
@@ -359,4 +339,6 @@ public class Api {
         }});
         return str;
     }
+
+
 }
