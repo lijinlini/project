@@ -42,5 +42,13 @@ public class IContorller {
         return "hello my current env is " + env;
     }
 
+    @RequestMapping("/getOom")
+    public void getOom(){
+        StringBuilder stringBuilder = new StringBuilder();
+        while(true){
+            stringBuilder.append(System.currentTimeMillis());
+        }
+    }
+
 
 }

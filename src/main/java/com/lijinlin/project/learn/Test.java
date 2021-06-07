@@ -3,8 +3,13 @@ package com.lijinlin.project.learn;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Test {
@@ -12,11 +17,16 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        System.out.println(DATE_FORMAT_THREAD_LOCAL.get().format(new Date()));
+        HashMap map2 = new HashMap();
+        Iterator iterator = map2.entrySet().iterator();
+        System.out.println(1<<30);
+        Map mp1 = new HashMap();
+        mp1.put("a",1);
+        Map map = Collections.synchronizedMap(mp1);
+        System.out.println(map);
 
-        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(sd.format(new Date()));
-
+        ConcurrentHashMap cmap = new ConcurrentHashMap();
+        cmap.put("a",1);
         /*TreeNode treeNode1 = new TreeNode(1);
         TreeNode treeNode2 = new TreeNode(2);
         TreeNode treeNode3 = new TreeNode(3);
