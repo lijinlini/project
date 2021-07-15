@@ -8,7 +8,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.protobuf.ProtobufDecoder;
 
 public class NettyServer {
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
         //创建BossGroup和WorkerGroup
         //1创建两个线程组 bossGroup和workerGroup
         //2bossGroup只处理连接请求，真正的客户端业务处理，会交给workerGroup完成
@@ -16,23 +16,23 @@ public class NettyServer {
         //4bossGroup和workerGroup含有的子线程（NioEventLoop）的个数 默认是cpu核数 * 2
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
-        try{
+        try {
             //创建服务器端的启动对象，配置参数
             ServerBootstrap bootstrap = new ServerBootstrap();
             //使用链式编程进行设置,设置两个线程组
-            bootstrap.group(bossGroup,workerGroup)
+            bootstrap.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)//使用NioSocketChannel作为服务器的通道时间
-                    .option(ChannelOption.SO_BACKLOG,128)//设置线程队列得到连接个数
-                    .childOption(ChannelOption.SO_KEEPALIVE,true)//设置保持活动连接状态
-                   // .handler(null)//该handler对应bossGroup childHandler对应 workerGroup
+                    .option(ChannelOption.SO_BACKLOG, 128)//设置线程队列得到连接个数
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)//设置保持活动连接状态
+                    // .handler(null)//该handler对应bossGroup childHandler对应 workerGroup
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         //给pipeline设置处理器
                         @Override
-                        protected void initChannel(SocketChannel ch) throws Exception{
+                        protected void initChannel(SocketChannel ch) throws Exception {
                             System.out.println("客户socketchannel hashcode = " + ch.hashCode());
                             ChannelPipeline pipeline = ch.pipeline();
                             //在pipeline加入ProtoBufDebuffer,制定对哪种对象进行解码
-                            pipeline.addLast("decoder",new ProtobufDecoder(StudentPOJO.Student.getDefaultInstance()));
+                            pipeline.addLast("decoder", new ProtobufDecoder(StudentPOJO.Student.getDefaultInstance()));
                             //可以使用一个集合管理SocketChannel,在推送消息时，可以将业务加入到各个channel对应的NIOEventLoop的
                             //taskQueue或者scheduleTaskQueue
                             pipeline.addLast(new NettyServerHandler());
@@ -46,9 +46,9 @@ public class NettyServer {
             cf.addListener(new ChannelFutureListener() {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
-                    if(cf.isSuccess()){
+                    if (cf.isSuccess()) {
                         System.out.println("监听端口 6668 成功");
-                    }else{
+                    } else {
                         System.out.println("监听端口 6668 失败");
                     }
                 }
@@ -56,7 +56,7 @@ public class NettyServer {
 
             //对关闭通道进行监听
             cf.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

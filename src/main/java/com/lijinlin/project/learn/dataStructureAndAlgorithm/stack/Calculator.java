@@ -64,7 +64,7 @@ public class Calculator {
                 }
             }
             index++;
-            if (index >= expression.length() ) {
+            if (index >= expression.length()) {
                 break;
             }
 

@@ -6,23 +6,25 @@ package com.lijinlin.project.learn.Thread.deadLock;
  */
 public class DeadLock {
     public static void main(String[] args) {
-        Makeup g1 = new Makeup(0,"灰姑娘");
-        Makeup g2 = new Makeup(1,"白雪公主");
+        Makeup g1 = new Makeup(0, "灰姑娘");
+        Makeup g2 = new Makeup(1, "白雪公主");
         g1.start();
         g2.start();
     }
 }
+
 //口红
-class Lipstick{
+class Lipstick {
 
 }
+
 //镜子
-class Mirror{
+class Mirror {
 
 }
 
 
-class Makeup extends Thread{
+class Makeup extends Thread {
     static Lipstick lipstick = new Lipstick();
     static Mirror mirror = new Mirror();
     //选择
@@ -44,23 +46,24 @@ class Makeup extends Thread{
             e.printStackTrace();
         }
     }
+
     private void makeup() throws InterruptedException {
         //化妆，互相持有对方的锁，就是需要拿到对方的资源
-        if(choice == 0){
-            synchronized (lipstick){
-                System.out.println(this.girlName+"获得口红的锁");
+        if (choice == 0) {
+            synchronized (lipstick) {
+                System.out.println(this.girlName + "获得口红的锁");
                 Thread.sleep(1000);
             }
-            synchronized (mirror){
-                System.out.println(this.girlName+"获得镜子的锁");
+            synchronized (mirror) {
+                System.out.println(this.girlName + "获得镜子的锁");
             }
-        }else{
-            synchronized (mirror){
-                System.out.println(this.girlName+"获得镜子的锁");
+        } else {
+            synchronized (mirror) {
+                System.out.println(this.girlName + "获得镜子的锁");
                 Thread.sleep(2000);
             }
-            synchronized (lipstick){
-                System.out.println(this.girlName+"获得口红的锁");
+            synchronized (lipstick) {
+                System.out.println(this.girlName + "获得口红的锁");
             }
 
         }

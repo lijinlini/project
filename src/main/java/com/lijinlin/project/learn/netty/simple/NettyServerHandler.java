@@ -68,7 +68,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         System.out.println("服务器读取线程 " + Thread.currentThread().getName() + "channel = " + ctx.channel());
         System.out.println("server ctx = " + ctx);
         //将 msg转成一个ByteBuf,这个ByteBuf是Netty提供的，不是NIO提供的，这里性能更高
-        ByteBuf buf = (ByteBuf)msg;
+        ByteBuf buf = (ByteBuf) msg;
         System.out.println("客户端发送消息是：" + buf.toString(CharsetUtil.UTF_8));
         System.out.println("客户端地址" + ctx.channel().remoteAddress());
 
@@ -80,7 +80,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         //super.channelReadComplete(ctx);
         //把数据写到缓存区，同时把数据刷新（从缓存区放到管道发送给客户端）
         //一般讲，我们对这个发送的数据进行编码
-        ctx.writeAndFlush(Unpooled.copiedBuffer("hello,客户端喵1",CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("hello,客户端喵1", CharsetUtil.UTF_8));
     }
 
     //处理异常，一般是需要关闭通道

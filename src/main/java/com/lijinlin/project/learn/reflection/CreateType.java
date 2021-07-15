@@ -1,7 +1,7 @@
 package com.lijinlin.project.learn.reflection;
 
 public class CreateType {
-    public static void main(String[] args) throws ClassNotFoundException{
+    public static void main(String[] args) throws ClassNotFoundException {
         Person person = new Student();
         System.out.println("这个人是：" + person.name);
         //方式1：通过对象获得

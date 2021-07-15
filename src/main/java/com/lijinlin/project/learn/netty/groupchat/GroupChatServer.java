@@ -16,17 +16,18 @@ public class GroupChatServer {
     public GroupChatServer(int port) {
         this.port = port;
     }
+
     //编写run方法，处理客户端的请求
-    public void run() throws Exception{
+    public void run() throws Exception {
         //创建两个线程组
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
-        try{
+        try {
             ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup,workerGroup)
+            b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
-                    .option(ChannelOption.SO_BACKLOG,128)
-                    .childOption(ChannelOption.SO_KEEPALIVE,true)
+                    .option(ChannelOption.SO_BACKLOG, 128)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true)
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) throws Exception {
@@ -35,7 +36,7 @@ public class GroupChatServer {
                             //向pipeline加入解码器
                             pipeline.addLast("decoder", new StringDecoder());
                             //向pipeline加入编码器
-                            pipeline.addLast("encoder",new StringEncoder());
+                            pipeline.addLast("encoder", new StringEncoder());
                             //加入自己的业务处理handler
                             pipeline.addLast(new GroupChatServerHandler());
                         }
@@ -44,7 +45,7 @@ public class GroupChatServer {
             ChannelFuture channelFuture = b.bind(port).sync();
             //监听关闭
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

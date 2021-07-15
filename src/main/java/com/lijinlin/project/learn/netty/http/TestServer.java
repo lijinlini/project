@@ -11,13 +11,13 @@ public class TestServer {
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup();
 
-        try{
+        try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
-            serverBootstrap.group(bossGroup,workerGroup).
+            serverBootstrap.group(bossGroup, workerGroup).
                     channel(NioServerSocketChannel.class).childHandler(new TestServerInitialLizer());
             ChannelFuture channelFuture = serverBootstrap.bind(6669).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             bossGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();
         }

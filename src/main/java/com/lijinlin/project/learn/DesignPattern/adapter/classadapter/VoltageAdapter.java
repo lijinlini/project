@@ -7,7 +7,7 @@ public class VoltageAdapter extends Voltage220V implements IVoltage5V {
         //获取220V
         int srcV = output220V();
         //转成5V
-        int dstV = srcV/44;
+        int dstV = srcV / 44;
         return dstV;
     }
 }

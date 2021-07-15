@@ -12,9 +12,9 @@ public class ReadOnlyBuffer {
         //得到一个只读buffer
         ByteBuffer readOnlyBuffer = buffer.asReadOnlyBuffer();
         System.out.println((readOnlyBuffer.getClass()));
-        while(readOnlyBuffer.hasRemaining()){
+        while (readOnlyBuffer.hasRemaining()) {
             System.out.println(readOnlyBuffer.get());
         }
-        readOnlyBuffer.put((byte)100);
+        readOnlyBuffer.put((byte) 100);
     }
 }

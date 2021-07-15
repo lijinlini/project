@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 public class NIOFileChannel01 {
-    public static void main(String[] args)throws Exception {
+    public static void main(String[] args) throws Exception {
         String str = "hello,李晋林";
         FileOutputStream fileOutputStream = new FileOutputStream("d:\\file01.txt");
         //通过fileoutputStrem获取对应的filechannel

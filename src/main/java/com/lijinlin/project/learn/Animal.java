@@ -19,11 +19,12 @@ public class Animal {
     public void setLegCount(Integer legCount) {
         this.legCount = legCount;
     }
+
     @Override
-    protected Object clone() throws CloneNotSupportedException{
+    protected Object clone() throws CloneNotSupportedException {
         Object deep = null;
         deep = super.clone();
-        Animal animal = (Animal)deep;
+        Animal animal = (Animal) deep;
         return animal;
     }
 }

@@ -30,19 +30,19 @@ public class ArrayQueueDemo {
                     break;
                 case 'g':
                     //取数据
-                    try{
+                    try {
                         int res = arrayQueue.getQueue();
-                        System.out.printf("取出数据是%d\n",res);
-                    }catch (Exception e){
+                        System.out.printf("取出数据是%d\n", res);
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
                 case 'h':
                     //查看队列头的数据
-                    try{
+                    try {
                         int res = arrayQueue.headQueue();
-                        System.out.printf("队列头的数据%d\n",res);
-                    }catch (Exception e){
+                        System.out.printf("队列头的数据%d\n", res);
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -67,6 +67,7 @@ class ArrayQueue {
     private int rear;
     //模拟队列存放数据
     private int[] arr;
+
     //创建队列的构造器
     public ArrayQueue(int arrMaxSize) {
         maxSize = arrMaxSize;

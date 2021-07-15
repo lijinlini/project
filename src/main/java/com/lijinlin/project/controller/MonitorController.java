@@ -14,12 +14,12 @@ public class MonitorController {
 
 
     @RequestMapping("/getAuthentication")
-    public AuthResponse getAuthentication(){
+    public AuthResponse getAuthentication() {
         //获取身份认证
         AuthResponse res = null;
-        try{
+        try {
             res = Api.auth();
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return res;

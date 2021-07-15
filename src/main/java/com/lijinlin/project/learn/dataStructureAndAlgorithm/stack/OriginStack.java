@@ -31,10 +31,10 @@ public class OriginStack {
         passwordList.add(g);
         Stack<String> passwordStack = new Stack<>();
         for (String password : passwordList) {
-            if(passwordStack.search(password) == 0){
+            if (passwordStack.search(password) == 0) {
                 //找不到就添加
                 passwordStack.add(password);
-            }else{
+            } else {
 
             }
         }

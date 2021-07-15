@@ -12,8 +12,8 @@ public class CountDownLatchDemo {
         CountDownLatch countDownLatchOne = new CountDownLatch(1);
         CountDownLatch countDownLatchFive = new CountDownLatch(5);
 
-        for (int i = 0; i < 5; i++){
-            new Thread(new MyRunnable(countDownLatchOne,countDownLatchFive)).start();
+        for (int i = 0; i < 5; i++) {
+            new Thread(new MyRunnable(countDownLatchOne, countDownLatchFive)).start();
         }
         System.out.println("用于触发处于等待状态的线程开始工作......");
         System.out.println("用于触发处于等待状态的线程工作完成，等待状态线程开始工作......");
@@ -27,7 +27,7 @@ public class CountDownLatchDemo {
 
     }
 
-    public static class MyRunnable implements Runnable{
+    public static class MyRunnable implements Runnable {
         private final CountDownLatch countDownLatchOne;
         private final CountDownLatch countDownLatchFive;
 
@@ -35,9 +35,10 @@ public class CountDownLatchDemo {
             this.countDownLatchOne = countDownLatchOne;
             this.countDownLatchFive = countDownLatchFive;
         }
+
         @Override
         public void run() {
-            try{
+            try {
                 System.out.println("等待主线程执行完毕，获得开始执行信号...");
                 countDownLatchOne.await();
                 System.out.println("处于等待的线程开始自己预期工作......");
@@ -45,12 +46,11 @@ public class CountDownLatchDemo {
                 countDownLatchFive.countDown();
                 System.out.println("完成预期工作，发出完成信号...");
 
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-
 
 
 }

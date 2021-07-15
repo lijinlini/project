@@ -2,6 +2,9 @@ package com.lijinlin.project.learn;
 
 import org.openjdk.jol.info.ClassLayout;
 
+import java.io.FileInputStream;
+import java.math.BigDecimal;
+import java.nio.channels.Selector;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
@@ -17,41 +20,7 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        HashMap map2 = new HashMap();
-        Iterator iterator = map2.entrySet().iterator();
-        System.out.println(1<<30);
-        Map mp1 = new HashMap();
-        mp1.put("a",1);
-        Map map = Collections.synchronizedMap(mp1);
-        System.out.println(map);
-
-        ConcurrentHashMap cmap = new ConcurrentHashMap();
-        cmap.put("a",1);
-        /*TreeNode treeNode1 = new TreeNode(1);
-        TreeNode treeNode2 = new TreeNode(2);
-        TreeNode treeNode3 = new TreeNode(3);
-        TreeNode treeNode4 = new TreeNode(4);
-        TreeNode treeNode5 = new TreeNode(5);
-        TreeNode treeNode6 = new TreeNode(6);
-        TreeNode treeNode7 = new TreeNode(7);
-        TreeNode treeNode8 = new TreeNode(8);
-        TreeNode treeNode9 = new TreeNode(9);
-        TreeNode treeNode10 = new TreeNode(10);
-        TreeNode treeNode11 = new TreeNode(11);
-
-        treeNode1.left = treeNode2;
-        treeNode1.right = treeNode3;
-        treeNode2.left = treeNode4;
-        treeNode2.right = treeNode5;
-        treeNode3.left = treeNode6;
-        treeNode3.right = treeNode7;
-
-        treeNode4.left = treeNode8;
-        treeNode4.right = treeNode9;
-        treeNode5.left = treeNode10;
-        treeNode5.right = treeNode11;
-
-        sortByLayer(treeNode1);*/
+        Selector.open();
 
 
     }

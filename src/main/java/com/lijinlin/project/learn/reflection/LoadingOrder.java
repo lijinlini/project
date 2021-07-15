@@ -16,14 +16,16 @@ public class LoadingOrder {
          */
     }
 }
-class A{
+
+class A {
     static int m = 100;
-    static{
-        System.out.println("A类静态代码块初始化" );
+
+    static {
+        System.out.println("A类静态代码块初始化");
         m = 300;
     }
 
-    public A(){
+    public A() {
         System.out.println("A类无参构造初始化");
     }
 }

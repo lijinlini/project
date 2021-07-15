@@ -194,7 +194,7 @@ public class Api {
     }
 
     public static String fetchStream() throws Exception {
-        return doGet(IO_FETCH,new HashMap<String, Object>());
+        return doGet(IO_FETCH, new HashMap<String, Object>());
     }
 
     public static void addHeader(HttpPost httpPost) {
@@ -210,6 +210,7 @@ public class Api {
             put("storeNo", storeNo);
         }});
     }
+
     public static String swapHttpGetParam(Map<String, Object> paramMap) {
         StringBuilder sb = new StringBuilder();
         if (null == paramMap) {
@@ -309,20 +310,20 @@ public class Api {
 
     public static String openStandAble() throws Exception {
         ;
-        Map<String,Object> param = new HashMap<>();
-        param.put("deviceSerial","D70432509");
-        param.put("channelNos",Arrays.asList(21));
+        Map<String, Object> param = new HashMap<>();
+        param.put("deviceSerial", "D70432509");
+        param.put("channelNos", Arrays.asList(21));
         String jsonParam = JSONObject.toJSONString(param);
         //application/json
         //application/x-www-form-urlencoded
-        String str = doPost(LIVE_VIDEO_OPEN, "application/json",jsonParam);
+        String str = doPost(LIVE_VIDEO_OPEN, "application/json", jsonParam);
         System.out.println("-------" + str);
         return str;
     }
 
     public static String openStand() throws Exception {
-        Map<String,Object> param = new HashMap<>();
-        param.put("channelIds","8cc1cc4912824c5f93a9481633c33e79");
+        Map<String, Object> param = new HashMap<>();
+        param.put("channelIds", "8cc1cc4912824c5f93a9481633c33e79");
         String jsonParam = JSONObject.toJSONString(param);
         //application/json
         //application/x-www-form-urlencoded

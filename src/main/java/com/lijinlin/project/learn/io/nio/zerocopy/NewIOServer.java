@@ -15,13 +15,13 @@ public class NewIOServer {
 
         //创建buffer
         ByteBuffer byteBuffer = ByteBuffer.allocate(4096);
-        while(true){
+        while (true) {
             SocketChannel socketChannel = serverSocketChannel.accept();
             int readcount = 0;
-            while(-1 != readcount){
+            while (-1 != readcount) {
                 try {
                     readcount = socketChannel.read(byteBuffer);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 //倒带这个buffer position = 0 mark 作废

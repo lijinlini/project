@@ -18,8 +18,8 @@ public class SignalLinkedListOverTurnIteration {
     }
 
     //递归
-    public static TreeNode recursion(TreeNode head){
-        if(head == null || head.next == null){
+    public static TreeNode recursion(TreeNode head) {
+        if (head == null || head.next == null) {
             return head;
         }
         TreeNode new_head = recursion(head.next);

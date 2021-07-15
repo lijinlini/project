@@ -7,7 +7,7 @@ package com.lijinlin.project.learn.OOM;
 public class OOMHeapSpaceDemo1 {
     public static void main(String[] args) {
         StringBuilder stringBuilder = new StringBuilder();
-        while(true){
+        while (true) {
             stringBuilder.append(System.currentTimeMillis());
         }
     }

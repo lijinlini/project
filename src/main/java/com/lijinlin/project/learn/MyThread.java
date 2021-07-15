@@ -2,7 +2,7 @@ package com.lijinlin.project.learn;
 
 import com.lijinlin.project.learn.DesignPattern.singleton.Singleton;
 
-public class MyThread extends Thread{
+public class MyThread extends Thread {
     public static void main(String[] args) {
         MyThread one = new MyThread();
         MyThread two = new MyThread();
@@ -16,6 +16,7 @@ public class MyThread extends Thread{
        Integer aa = 127;
        System.out.print(ss == aa);*/
     }
+
     //2.重写run方法
     @Override
     public void run() {

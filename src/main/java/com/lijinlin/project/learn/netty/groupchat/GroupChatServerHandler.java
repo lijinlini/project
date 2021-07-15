@@ -20,8 +20,9 @@ public class GroupChatServerHandler extends SimpleChannelInboundHandler<String> 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     //点对点聊天使用一个hashmap管理
-    public static Map<String,Channel> channels = new HashMap<>();
-    public static Map<User,Channel> channels2 = new HashMap<>();
+    public static Map<String, Channel> channels = new HashMap<>();
+    public static Map<User, Channel> channels2 = new HashMap<>();
+
     //handlerAdded表示连接建立，一旦链接，第一个被执行
     //将当前channel加入到channelGroup
     @Override

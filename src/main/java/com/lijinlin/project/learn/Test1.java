@@ -9,15 +9,15 @@ import java.util.Stack;
 
 public class Test1 {
     public static void main(String[] args) {
-        Hashtable hashTable = new Hashtable<String,Integer>();
-        hashTable.put("a",1);
-        hashTable.put("a",2);
-        hashTable.put("b",2);
-        Set<Map.Entry<String,Integer>> set =  hashTable.entrySet();
-        for(Iterator<String> iterator = hashTable.keySet().iterator();iterator.hasNext();){
+        Hashtable hashTable = new Hashtable<String, Integer>();
+        hashTable.put("a", 1);
+        hashTable.put("a", 2);
+        hashTable.put("b", 2);
+        Set<Map.Entry<String, Integer>> set = hashTable.entrySet();
+        for (Iterator<String> iterator = hashTable.keySet().iterator(); iterator.hasNext(); ) {
             String key = iterator.next();
-            System.out.println("key-----"+key);
-            System.out.println("value--------"+hashTable.get(key));
+            System.out.println("key-----" + key);
+            System.out.println("value--------" + hashTable.get(key));
         }
 
     }
@@ -36,23 +36,23 @@ public class Test1 {
 
         for (int i = 0; i < list.length; i++) {
             //2-1如果栈是空的直接压栈，如果不为空进行校验
-            if(stack.size() == 0){
+            if (stack.size() == 0) {
                 stack.add(list[i]);
-            }else{
+            } else {
                 //不为空的时候看一下栈顶的元素是否和当前元素匹配，如果匹配就弹出，如果不匹配直接返回false;
                 Character top = stack.peek();
                 Character need = map.get(top);
-                if(need.equals(list[i])){
+                if (need.equals(list[i])) {
                     //匹配弹出
                     stack.pop();
-                }else{
+                } else {
                     //不匹配继续压栈
                     stack.add(list[i]);
                 }
             }
 
         }
-        if(stack.isEmpty()){
+        if (stack.isEmpty()) {
             return true;
         }
         return false;

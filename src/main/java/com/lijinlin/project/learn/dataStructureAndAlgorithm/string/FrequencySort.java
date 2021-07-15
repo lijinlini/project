@@ -17,6 +17,7 @@ public class FrequencySort {
         //输出结果应该是 aaaaabbbc
         frequencySort(str);
     }
+
     /**
      * 根据字符出现频率排序，给定一个字符串，请将字符串里的字符按照出现的频率降序排列。
      * 排序高的放在前面
@@ -34,7 +35,7 @@ public class FrequencySort {
         for (char c : chars) {
             if (charAndCountMap.containsKey(c)) {
                 charAndCountMap.put(c, charAndCountMap.get(c) + 1);
-            }else{
+            } else {
                 charAndCountMap.put(c, 1);
             }
         }

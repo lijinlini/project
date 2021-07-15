@@ -22,19 +22,19 @@ public class IContorller {
     private PrototypeService prototypeService;
 
     @RequestMapping("/hello")
-    public String hello(){
+    public String hello() {
         return "hello,Sprintboot";
     }
 
     @RequestMapping("/test1")
-    public void test1(){
+    public void test1() {
 
-       System.out.println(singletionService);
-       System.out.println(prototypeService);
+        System.out.println(singletionService);
+        System.out.println(prototypeService);
     }
 
     @RequestMapping("/getEnv")
-    public String getEnv(@Value("${curvar}") String env) throws Exception{
+    public String getEnv(@Value("${curvar}") String env) throws Exception {
        /* Properties properties = new Properties();
         BufferedReader bufferedReader = new BufferedReader(new FileReader("D:\\workspace\\self\\project\\src\\main\\resources\\bootstrap.properties"));
         properties.load(bufferedReader);
@@ -43,9 +43,9 @@ public class IContorller {
     }
 
     @RequestMapping("/getOom")
-    public void getOom(){
+    public void getOom() {
         StringBuilder stringBuilder = new StringBuilder();
-        while(true){
+        while (true) {
             stringBuilder.append(System.currentTimeMillis());
         }
     }

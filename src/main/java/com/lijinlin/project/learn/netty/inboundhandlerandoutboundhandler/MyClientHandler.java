@@ -8,7 +8,7 @@ import io.netty.util.CharsetUtil;
 public class MyClientHandler extends SimpleChannelInboundHandler<Long> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Long msg) throws Exception {
-        System.out.println("服务器ip = "+ ctx.channel().remoteAddress() + "收到服务器消息 = " + msg);
+        System.out.println("服务器ip = " + ctx.channel().remoteAddress() + "收到服务器消息 = " + msg);
 
     }
     //重写channelActive发送数据
