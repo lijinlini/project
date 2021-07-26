@@ -104,6 +104,19 @@
             <artifactId>junit</artifactId>
         </dependency>
         <!--end结束-->
+        <!--切面编成开始-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.6</version>
+        </dependency>
+        <!--切面变成结束-->
+
 
     </dependencies>
 
