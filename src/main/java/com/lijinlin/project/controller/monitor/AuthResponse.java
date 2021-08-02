@@ -6,16 +6,20 @@ package com.lijinlin.project.controller.monitor;
  */
 public class AuthResponse {
     /**
-     *访问令牌
+     * 访问令牌
      */
     private String Access_token;
     /**
-     *令牌类型
+     * 令牌类型
      */
     private String token_type;
-    /**过期时间（秒）*/
+    /**
+     * 过期时间（秒）
+     */
     private Long expires_in;
-    /**权限范围*/
+    /**
+     * 权限范围
+     */
     private String scope;
 
     public String getToken_type() {

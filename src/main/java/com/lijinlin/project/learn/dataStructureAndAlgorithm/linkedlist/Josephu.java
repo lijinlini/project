@@ -6,7 +6,7 @@ public class Josephu {
         circleSingleLinkedList.addBoy(25);
         circleSingleLinkedList.showBoy();
         //出圈正确顺序 2 4 1 5 3
-        circleSingleLinkedList.countBoy(1,2,25);
+        circleSingleLinkedList.countBoy(1, 2, 25);
     }
 }
 
@@ -40,19 +40,19 @@ class CircleSingleLinkedList {
             helper = helper.getNext();
         }
 
-        while (true){
-            if(helper == first){
+        while (true) {
+            if (helper == first) {
                 break;
             }
             for (int i = 0; i < countNum - 1; i++) {
                 first = first.getNext();
                 helper = helper.getNext();
             }
-            System.out.printf("报数的小孩编号是%d\n",first.getNo());
+            System.out.printf("报数的小孩编号是%d\n", first.getNo());
             first = first.getNext();
             helper.setNext(first);
         }
-        System.out.printf("最后留在圈中的小孩编号%d\n",first.getNo());
+        System.out.printf("最后留在圈中的小孩编号%d\n", first.getNo());
     }
 
     //添加小孩节点，构建成一个环形的链表

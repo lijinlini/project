@@ -35,6 +35,7 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     //group就是充当业务线程池，可以将任务提交到该线程池中
     static final EventExecutorGroup group = new DefaultEventExecutorGroup(16);
+
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws InterruptedException, UnsupportedEncodingException {
         System.out.println("EchoServerHandler的线程是=" + Thread.currentThread().getName());
@@ -89,9 +90,9 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         buf.readBytes(bytes);
         String body = new String(bytes, "UTF-8");
         //业务很耗时休眠十秒代替
-        Thread.sleep(10*1000);
+        Thread.sleep(10 * 1000);
         System.out.println("普通调用方式的线程是=" + Thread.currentThread().getName());
-        ctx.writeAndFlush(Unpooled.copiedBuffer("hello,客户端喵喵喵",CharsetUtil.UTF_8));
+        ctx.writeAndFlush(Unpooled.copiedBuffer("hello,客户端喵喵喵", CharsetUtil.UTF_8));
         System.out.println("go on");
     }
 

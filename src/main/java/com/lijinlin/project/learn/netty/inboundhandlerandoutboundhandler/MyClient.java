@@ -11,7 +11,7 @@ public class MyClient {
     public static void main(String[] args) throws Exception {
         EventLoopGroup group = new NioEventLoopGroup();
 
-        try{
+        try {
             Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(group)
                     .channel(NioSocketChannel.class)
@@ -19,7 +19,7 @@ public class MyClient {
                     .handler(new MyClientInitializer());
             ChannelFuture channelFuture = bootstrap.connect("localhost", 7000).sync();
             channelFuture.channel().closeFuture().sync();
-        }finally {
+        } finally {
             group.shutdownGracefully();
         }
     }

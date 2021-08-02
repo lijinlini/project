@@ -33,14 +33,14 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<MyDataInfo.M
     protected void channelRead0(ChannelHandlerContext ctx, MyDataInfo.MyMessage msg) throws Exception {
         //根据dataType来显示不同的信息
         MyDataInfo.MyMessage.DataType dataType = msg.getDataType();
-        if(dataType == MyDataInfo.MyMessage.DataType.StudentType){
+        if (dataType == MyDataInfo.MyMessage.DataType.StudentType) {
             MyDataInfo.Student student = msg.getStudent();
             System.out.println("客户端发送的数据 id = " + student.getId() + "名字 = " + student.getName());
-        }else if(dataType == MyDataInfo.MyMessage.DataType.WorkerType){
+        } else if (dataType == MyDataInfo.MyMessage.DataType.WorkerType) {
             MyDataInfo.Worder worker = msg.getWorker();
             System.out.println("客户端发送的数据 名字 = " + worker.getName() + "年龄 = " + worker.getAge());
-        }else{
-            System.out.println("传输类型不正确" );
+        } else {
+            System.out.println("传输类型不正确");
         }
     }
 

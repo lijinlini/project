@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 //https://www.cnblogs.com/xiaoxing/p/10762686.html
 public class NotBeSolvedSpringCircularDependence {
     private ApplicationContext applicationContext;
@@ -16,25 +17,26 @@ public class NotBeSolvedSpringCircularDependence {
     }
 
     @Test
-    public void test(){
+    public void test() {
 
     }
 
     @After
-    public void after(){
-        if(applicationContext != null){
-            ((ClassPathXmlApplicationContext)applicationContext).close();
+    public void after() {
+        if (applicationContext != null) {
+            ((ClassPathXmlApplicationContext) applicationContext).close();
         }
     }
 
 }
 
-class CirculationB{
+class CirculationB {
     private CirculationA circulationA;
 
     public CirculationB(CirculationA circulationA) {
         this.circulationA = circulationA;
     }
+
     public CirculationB() {
 
     }
@@ -47,12 +49,14 @@ class CirculationB{
         this.circulationA = circulationA;
     }
 }
-class CirculationA{
+
+class CirculationA {
     private CirculationB circulationB;
 
     public CirculationA(CirculationB circulationB) {
         this.circulationB = circulationB;
     }
+
     public CirculationA() {
 
     }

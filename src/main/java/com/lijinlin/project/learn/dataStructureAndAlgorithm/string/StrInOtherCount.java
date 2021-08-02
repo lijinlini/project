@@ -12,7 +12,7 @@ public class StrInOtherCount {
         //count(str, sub);
         String str1 = "afdsdse";
         String str2 = "aaaffffddddddsssssss";
-        count2(str1,str2);
+        count2(str1, str2);
     }
 
     /**

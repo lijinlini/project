@@ -19,9 +19,9 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, HttpObject msg) throws Exception {
         //判断 msg是不是httprequest请求
-        if(msg instanceof HttpRequest){
+        if (msg instanceof HttpRequest) {
             System.out.println("ctx 类型 = " + ctx.getClass());
-            System.out.println("pipelin hashcode = " + ctx.pipeline().hashCode()+ " TestHttpServerHandler hashcode = " + this.hashCode());
+            System.out.println("pipelin hashcode = " + ctx.pipeline().hashCode() + " TestHttpServerHandler hashcode = " + this.hashCode());
 
             System.out.println("msg 类型 = " + msg.getClass());
             System.out.println("客户端地址： " + ctx.channel().remoteAddress());
@@ -30,7 +30,7 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
             HttpRequest httpRequest = (HttpRequest) msg;
             //获取到uri
             URI uri = new URI(httpRequest.uri());
-            if("/favicon.ico".equals(uri.getPath())){
+            if ("/favicon.ico".equals(uri.getPath())) {
                 System.out.println("请求了 favicon.ico,不做响应");
                 return;
             }
@@ -39,8 +39,8 @@ public class TestHttpServerHandler extends SimpleChannelInboundHandler<HttpObjec
             ByteBuf content = Unpooled.copiedBuffer("hello,我是服务器", CharsetUtil.UTF_8);
             //构造一个http的响应 即 httpresponse 这里返回的就是http200的状态码
             FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, content);
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE,"text/plain");
-            response.headers().set(HttpHeaderNames.CONTENT_LENGTH,content.readableBytes());
+            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());
             //将构建好的response返回
             ctx.writeAndFlush(response);
         }

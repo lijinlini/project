@@ -91,15 +91,15 @@ public class GroupChatServer {
                 System.out.println("form 客户端" + msg);
 
                 //向其他客户端转发小心（排除自己）
-                sendInfoToOtherClients(msg,channel);
+                sendInfoToOtherClients(msg, channel);
             }
         } catch (IOException e) {
-            try{
+            try {
                 System.out.println(channel.getRemoteAddress() + "离线了");
                 //取消注册，关闭通道
                 key.cancel();
                 channel.close();
-            }catch (IOException e1){
+            } catch (IOException e1) {
                 e1.printStackTrace();
             }
         }
@@ -107,15 +107,15 @@ public class GroupChatServer {
 
     private void sendInfoToOtherClients(String msg, SocketChannel self) throws IOException {
         System.out.println("服务器转发消息中。。。。。");
-        System.out.println("服务器转发数据给客户端："+Thread.currentThread().getName());
+        System.out.println("服务器转发数据给客户端：" + Thread.currentThread().getName());
         //遍历所有注册到selector中的channel，并排除self
         for (SelectionKey key : selector.keys()) {
             //通过key取出通道 用接口的方式接收channel
             Channel targetChannel = key.channel();
             //排除自己
-            if(targetChannel instanceof SocketChannel && targetChannel != self){
+            if (targetChannel instanceof SocketChannel && targetChannel != self) {
                 //转型 dest是目标客户端连接eiderchannel
-                SocketChannel dest = (SocketChannel)targetChannel;
+                SocketChannel dest = (SocketChannel) targetChannel;
                 //将msg存储到buff
                 ByteBuffer buffer = ByteBuffer.wrap(msg.getBytes());
                 //将buffer的数据写入通道

@@ -29,7 +29,7 @@ public class SingleLinkedListDemo {
         singleLinkedList2.list();
 
         System.out.println("合并两个链表~~");
-        SingleLinkedList singleLinkedList3 = mergeSingleLinkedList(singleLinkedList1,singleLinkedList2);
+        SingleLinkedList singleLinkedList3 = mergeSingleLinkedList(singleLinkedList1, singleLinkedList2);
         singleLinkedList3.list();
         /*System.out.println();
         System.out.println("反转链表~~");
@@ -62,19 +62,20 @@ public class SingleLinkedListDemo {
         System.out.println("res:" + res);*/
 
     }
+
     /**
      * 合并两个有序的单链表，合并之后的单链表依然有序 从小到大排序
      */
-    public static SingleLinkedList mergeSingleLinkedList(SingleLinkedList list1,SingleLinkedList list2){
-        if(list1 == null){
+    public static SingleLinkedList mergeSingleLinkedList(SingleLinkedList list1, SingleLinkedList list2) {
+        if (list1 == null) {
             return list2;
         }
-        if(list2 == null){
+        if (list2 == null) {
             return list1;
         }
         HeroNode headHeroNode1 = list1.getHead();
         HeroNode curNode = headHeroNode1.next;
-        while (curNode != null){
+        while (curNode != null) {
             HeroNode addNode = curNode;
             curNode = curNode.next;
             list2.addByOrder(addNode);

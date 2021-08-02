@@ -14,7 +14,7 @@ public class NIOFileChannel03 {
         FileChannel fileChannel02 = fileOutputStream.getChannel();
 
         ByteBuffer byteBuffer = ByteBuffer.allocate(512);
-        while(true){
+        while (true) {
             /*
              position = 0;
         limit = capacity;
@@ -24,7 +24,7 @@ public class NIOFileChannel03 {
             byteBuffer.clear();
             int read = fileChannel01.read(byteBuffer);
             System.out.println(read);
-            if(read == -1){
+            if (read == -1) {
                 break;
             }
             byteBuffer.flip();

@@ -14,7 +14,7 @@ public class ProducerAndConsumer {
 
         private void producer() {
             while (true) {
-                if(queue.size() == 10){
+                if (queue.size() == 10) {
                     try {
                         queue.notify();
                         queue.wait();
@@ -29,23 +29,24 @@ public class ProducerAndConsumer {
                     e.printStackTrace();
                 }
                 System.out.println("生产一个任务，当前队列长度" + queue.size());
-                try{
+                try {
                     Thread.sleep(50);
-                }catch (InterruptedException e){
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
     }
 
-    class Consumer extends Thread{
+    class Consumer extends Thread {
         @Override
         public void run() {
             super.run();
         }
-        private void consumer(){
-            while(true){
-                if(queue.size() == 0){
+
+        private void consumer() {
+            while (true) {
+                if (queue.size() == 0) {
                     try {
                         queue.wait();
                     } catch (InterruptedException e) {

@@ -7,11 +7,11 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-public class NettyClient{
+public class NettyClient {
     public static void main(String[] args) throws Exception {
         //客户端需要一个事件循环组
         NioEventLoopGroup group = new NioEventLoopGroup();
-        try{
+        try {
             //创建客户端启动对象
             //注意客户端使用的不是ServerBootstrap而是Bootstrap
             Bootstrap bootstrap = new Bootstrap();
@@ -28,10 +28,10 @@ public class NettyClient{
             System.out.println("客户端 ok..");
             //启动客户端去连接服务器端
             //关于ChannelFuture要分析，涉及netty的异步模型
-            ChannelFuture channelFutrue = bootstrap.connect("127.0.0.1",6668).sync();
+            ChannelFuture channelFutrue = bootstrap.connect("127.0.0.1", 6668).sync();
             //给关闭通道进行监听
             channelFutrue.channel().closeFuture().sync();
-        }finally {
+        } finally {
             group.shutdownGracefully();
         }
 

@@ -26,9 +26,9 @@ public class NIOServer {
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
         System.out.println("注册后的selectioneky数量=" + selector.keys().size());
         //循环等待客户端链接
-        while(true){
+        while (true) {
             //阻塞1秒钟 等于0就是没有事件发生(连接事件)
-            if(selector.select(1000) == 0){
+            if (selector.select(1000) == 0) {
                 System.out.println("服务器等待了1秒，无链接");
                 continue;
             }
@@ -39,11 +39,11 @@ public class NIOServer {
             System.out.println("selectionKeys数量=" + selectionKeys.size());
             //遍历selectionKeys，使用迭代器
             Iterator<SelectionKey> keyIterator = selectionKeys.iterator();
-            while(keyIterator.hasNext()){
+            while (keyIterator.hasNext()) {
                 //获取到SelectKey
                 SelectionKey key = keyIterator.next();
                 //根据key 对应的通道发生的事件做相应处理
-                if(key.isAcceptable()){
+                if (key.isAcceptable()) {
                     //如果发生的是OP_ACCEPT这个事件：有新的客户端连接我
                     //给该客户端生成一个SocketChannel
                     SocketChannel socketChannel = serverSocketChannel.accept();
@@ -51,15 +51,15 @@ public class NIOServer {
                     socketChannel.configureBlocking(false);
                     //将当前 socketChannel注册到selector,关注事件为OP_READ（读）
                     // 同时给socketChannel关联一个buffer
-                    socketChannel.register(selector,SelectionKey.OP_READ, ByteBuffer.allocate(1024));
+                    socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
                     System.out.println("客户端连接后，注册的selectioneky数量=" + selector.keys().size());
                 }
-                if(key.isReadable()){
+                if (key.isReadable()) {
                     //发生OP_READ读事件
                     //通过key反向获取到对应channel
-                    SocketChannel channel = (SocketChannel)key.channel();
+                    SocketChannel channel = (SocketChannel) key.channel();
                     //获取到该channel关联的buffer
-                    ByteBuffer buffer = (ByteBuffer)key.attachment();
+                    ByteBuffer buffer = (ByteBuffer) key.attachment();
 
                     channel.read(buffer);
                     System.out.println("form客户端" + new String(buffer.array()));

@@ -34,7 +34,7 @@ public class NettyByteBuf02 {
                 //不加char输出的是ascii码
                 System.out.println((char) byteBuf.getByte(i));
             }
-            System.out.println(byteBuf.getCharSequence(12,14,Charset.forName("utf-8")));
+            System.out.println(byteBuf.getCharSequence(12, 14, Charset.forName("utf-8")));
         }
     }
 }

@@ -10,8 +10,9 @@ public class HouseDirector {
     public void setHouseBuilder(HouseBuilder houseBuilder) {
         this.houseBuilder = houseBuilder;
     }
+
     //如何建造房子交给指挥者
-    public House constructHouse(){
+    public House constructHouse() {
         houseBuilder.buildBasic();
         houseBuilder.buildWalls();
         houseBuilder.roofed();

@@ -1,19 +1,18 @@
-
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>test</title>
-        <script type="text/javascript" src="chplayer/chplayer.min.js"></script>
-    </head>
- 
-    <body>
-        <dev id='video'></dev>
-        <script type="text/javascript">
-            var videoObject = {
-                container: '#video', //“#”代表容器的ID，“.”或“”代表容器的class
-                variable: 'player', //该属性必需设置，值等于下面的new chplayer()的对象
-                video: 'http://hls01open.ys7.com/openlive/91142e247dae46f58410f45d665ae009.m3u8' //视频地址
-            };
-            var player = new chplayer(videoObject);
-        </script>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script type="text/javascript" src="chplayer/chplayer.min.js"></script>
+</head>
+
+<body>
+<dev id='video'></dev>
+<script type="text/javascript">
+    var videoObject = {
+        container: '#video', //“#”代表容器的ID，“.”或“”代表容器的class
+        variable: 'player', //该属性必需设置，值等于下面的new chplayer()的对象
+        video: 'http://hls01open.ys7.com/openlive/91142e247dae46f58410f45d665ae009.m3u8' //视频地址
+    };
+    var player = new chplayer(videoObject);
+</script>
+</body>

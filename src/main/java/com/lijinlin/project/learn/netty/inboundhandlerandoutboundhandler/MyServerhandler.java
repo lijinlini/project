@@ -13,7 +13,8 @@ public class MyServerhandler extends SimpleChannelInboundHandler<Long> {
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        cause.printStackTrace();;
+        cause.printStackTrace();
+        ;
         ctx.close();
     }
 }

@@ -18,10 +18,10 @@ public class SortByLayer {
         root9.right = root7;
         ArrayList<ArrayList<Integer>> list = levelOrder(root3);
         System.out.println("[");
-        for(ArrayList<Integer> list1 : list){
+        for (ArrayList<Integer> list1 : list) {
             System.out.print("[");
-            for(Integer value : list1){
-                System.out.print(value+",");
+            for (Integer value : list1) {
+                System.out.print(value + ",");
             }
             System.out.println("],");
         }
@@ -87,6 +87,7 @@ public class SortByLayer {
         }
         return res;
     }
+
     //有下一个节点的二叉树
     static class TreeNode {
         public int value;

@@ -13,6 +13,7 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter implements 
     private String result;
     //客户端调用方法时，传入的参数
     private String para;
+
     //(1)与服务器的连接创建成功后，就会被调用
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
@@ -47,8 +48,9 @@ public class NettyClientHandler extends ChannelInboundHandlerAdapter implements 
         //服务方返回的结果
         return result;
     }
+
     //(2)
-    void setPara(String para){
+    void setPara(String para) {
         System.out.println(" setPara 被调用");
         this.para = para;
     }

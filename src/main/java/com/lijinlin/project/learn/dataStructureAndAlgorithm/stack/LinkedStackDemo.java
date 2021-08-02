@@ -11,28 +11,28 @@ public class LinkedStackDemo {
         //控制是否退出菜单
         boolean loop = true;
         Scanner scanner = new Scanner(System.in);
-        while (loop){
+        while (loop) {
             System.out.println("show:表示显示栈");
             System.out.println("exit:退出程序");
             System.out.println("push:表示添加数据到栈");
             System.out.println("pop:表示出栈");
             System.out.println("请输入你的选择");
             key = scanner.next();
-            switch (key){
+            switch (key) {
                 case "show":
                     stack.list();
                     break;
-                case"push":
+                case "push":
                     System.out.println("请输入一个数");
                     int value = scanner.nextInt();
                     stack.push(value);
                     break;
                 case "pop":
-                    try{
+                    try {
                         int res = stack.pop();
-                        System.out.printf("出栈的数据是%d\n",res);
+                        System.out.printf("出栈的数据是%d\n", res);
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
                     break;
@@ -75,7 +75,7 @@ class LinkedListStack {
             return;
         }
         top++;
-        stack.add(top,value);
+        stack.add(top, value);
     }
 
     //出栈，将栈顶的数据返回
@@ -97,7 +97,7 @@ class LinkedListStack {
             return;
         }
         for (int i = top; i >= 0; i--) {
-            System.out.printf("stack[%d]:%d\n",i,stack.get(i));
+            System.out.printf("stack[%d]:%d\n", i, stack.get(i));
         }
     }
 }

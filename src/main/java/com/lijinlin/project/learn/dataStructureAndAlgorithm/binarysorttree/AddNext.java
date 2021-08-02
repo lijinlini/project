@@ -29,6 +29,7 @@ public class AddNext {
         connectNext(root1);
         System.out.println(root1.value + "," + root2.value + "," + root2.next.value + "," + root4.value + "," + root4.next.value + "," + root4.next.next.value + "," + root4.next.next.next.value);
     }
+
     public static void connectNext(TreeNode curNode) {
         //当前节点下一行第一个节点
         TreeNode firstChild = null;

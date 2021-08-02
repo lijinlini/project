@@ -15,7 +15,7 @@ public class TestLock {
     }
 }
 
-class TestLock2 implements Runnable{
+class TestLock2 implements Runnable {
     int ticketNums = 10;
 
     //定义lock锁
@@ -23,19 +23,19 @@ class TestLock2 implements Runnable{
 
     @Override
     public void run() {
-        while(true){
-            try{
+        while (true) {
+            try {
                 lock.lock();
-                if(ticketNums>0){
+                if (ticketNums > 0) {
                     Thread.sleep(1000);
-                    ticketNums -- ;
+                    ticketNums--;
                     System.out.println(ticketNums);
-                }else {
+                } else {
                     break;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 lock.unlock();
             }
 

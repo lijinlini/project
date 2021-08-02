@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--使用构造函数互相引用 -->
     <!--<bean id="circulationb" class="com.lijinlin.project.learn.interview.circularDependence.CirculationB" >
         <constructor-arg name="circulationA" ref="circulationa"/>
@@ -10,12 +10,16 @@
         <constructor-arg name="circulationB" ref="circulationb"/>
     </bean>-->
 
-    <!--使用setter方式可以 A的filed依赖B  B构造函数依赖A -->
-    <bean id="circulationa" class="com.lijinlin.project.learn.interview.circularDependence.CirculationA" >
-        <property name="circulationB" ref="circulationb"/>
+    <!-- B的filed依赖A  A构造函数依赖B -->
+    <bean id="circulationa" class="com.lijinlin.project.learn.interview.circularDependence.CirculationA">
+        <constructor-arg name="circulationB" ref="circulationb"/>
     </bean>
-    <bean id="circulationb" class="com.lijinlin.project.learn.interview.circularDependence.CirculationB" >
-        <constructor-arg name="circulationA" ref="circulationa"/>
+    <bean id="circulationb" class="com.lijinlin.project.learn.interview.circularDependence.CirculationB">
+        <property name="circulationA" ref="circulationa"/>
     </bean>
+
+    <!--开启aop注解支持-->
+    <!--<aop:aspectj-autoproxy/>-->
+    <!--结束aop注解支持-->
 
 </beans>

@@ -64,6 +64,7 @@ class DoubleLinkedList {
             temp.next = heroNode;
         }
     }
+
     public void add(HeroNode2 heroNode) {
         //因为head节点不能动，因此我们需要一个辅助变量temp
         HeroNode2 temp = head;

@@ -25,24 +25,26 @@ public class ClassInit {
     }
 }
 
-class Father{
+class Father {
     static int b = 2;
-    static{
+
+    static {
         System.out.println("父类被加载");
     }
 
-    public  Father() {
+    public Father() {
         System.out.println("父类构造方法被加载");
     }
 }
 
-class Son extends Father{
+class Son extends Father {
     static {
         System.out.println("子类被加载");
-         m = 300;
+        m = 300;
     }
+
     static int m = 100;
-    static final int M =1;
+    static final int M = 1;
 
     public Son() {
         System.out.println("子类构造方法");

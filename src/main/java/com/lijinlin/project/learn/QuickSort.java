@@ -34,20 +34,20 @@ public class QuickSort {
         //如果区间只有一个数，则返回
         return arr;
     }*/
-    public static int[] quickSort(int[] nums,int left, int right){
-        if(left < right) {
+    public static int[] quickSort(int[] nums, int left, int right) {
+        if (left < right) {
             int pivot = nums[left];
 
-            while(left < right){
+            while (left < right) {
 
-                while(left < right && nums[right]>=pivot){
+                while (left < right && nums[right] >= pivot) {
 
                     right--;
 
                 }
                 nums[left] = nums[right];
 
-                while(left <  right && nums[left] <= pivot){
+                while (left < right && nums[left] <= pivot) {
 
                     left++;
                 }
@@ -56,17 +56,17 @@ public class QuickSort {
             }
 
             nums[left] = pivot;
-            quickSort(nums,left,left - 1);
-            quickSort(nums,left + 1,right);
+            quickSort(nums, left, left - 1);
+            quickSort(nums, left + 1, right);
         }
         return nums;
 
     }
 
-    public static void main(String[]  args){
-        int[] quickNums ={23,46,0,8,11,18};
-        int[] quickArray = quickSort(quickNums,0,quickNums.length-1);
-        for(int i : quickArray){
+    public static void main(String[] args) {
+        int[] quickNums = {23, 46, 0, 8, 11, 18};
+        int[] quickArray = quickSort(quickNums, 0, quickNums.length - 1);
+        for (int i : quickArray) {
             System.out.print(i + ",");
         }
 

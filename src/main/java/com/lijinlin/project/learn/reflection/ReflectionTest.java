@@ -17,7 +17,7 @@ public class ReflectionTest {
     }
 }
 
-class User{
+class User {
     private String name = "123456";
     private int id;
     private int age;
@@ -35,7 +35,7 @@ class User{
         this.age = age;
     }
 
-    private void test(){
+    private void test() {
 
     }
 

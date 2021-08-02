@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 
 public class NIOFileChannel04 {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         FileInputStream fileInputStream = new FileInputStream("d:\\a.jpg");
         FileOutputStream fileOutputStream = new FileOutputStream("d:\\a2.jpg");
 
@@ -14,7 +14,7 @@ public class NIOFileChannel04 {
         FileChannel destCh = fileOutputStream.getChannel();
 
         //使用transferForm完成拷贝
-        destCh.transferFrom(sourceCh,0,sourceCh.size());
+        destCh.transferFrom(sourceCh, 0, sourceCh.size());
         sourceCh.close();
         destCh.close();
         fileInputStream.close();
