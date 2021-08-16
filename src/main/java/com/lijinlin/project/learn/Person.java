@@ -26,6 +26,10 @@ public class Person {
         this.ID = ID;
     }
 
+    public Person(int ID) {
+        this.ID = ID;
+    }
+
     public void Speak() {
         System.out.println("Hello! " + "My name is " + name);
     }

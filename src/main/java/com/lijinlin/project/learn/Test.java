@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Queue;
@@ -20,9 +21,18 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        Selector.open();
-
-
+        int a = 4;
+        int b = -3;
+        int c = 4;
+        int d = 0;
+        int e = (0 - 1) / 2;
+        System.out.println((a - 1) / 2);
+        System.out.println((b - 1) / 2);
+        System.out.println(a < c);
+        System.out.println((d - 1) / 2);
+        System.out.println((b - 1) / 3);
+        System.out.println((0 - 1) / 2);
+        System.out.println(e);
     }
 
     //二叉树层序遍历

@@ -83,6 +83,9 @@ public class RBTree <K extends Comparable<K>,V> {
 
     /**
      * 新增节点
+     * 红黑树节点的新增
+     *  1普通的二叉树的插入
+     *  2红黑树的平衡
      * @author lijinlin
      * @date 2021/8/3 9:51
      * @param key
