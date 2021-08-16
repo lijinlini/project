@@ -1,6 +1,6 @@
 package com.lijinlin.project.learn;
 
-public class QuickSort {
+public class QuickSort  {
     /*public static int[] quickSort(int[] arr,int begin, int end){//如果区间不只一个数
         if(begin < end) {
             int temp = arr[begin]; //将区间的第一个数作为基准数

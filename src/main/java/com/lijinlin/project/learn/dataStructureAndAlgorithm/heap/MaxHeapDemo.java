@@ -36,11 +36,11 @@ public class MaxHeapDemo {
 
     /**
      * 0 1 2 3 4 5 6
-     *          0
-     *         / \
-     *        1   2
-     *      / \   / \
-     *     3   4 5   6
+     *          100
+     *         /   \
+     *       88     96
+     *      /\      / \
+     *    81  18  55  76
      *     注意下面方法都是取索引值而不是数组中具体的数值
      * @author lijinlin
      * @date 2021/8/16 16:15
@@ -88,6 +88,11 @@ public class MaxHeapDemo {
 
     /**
      * 往堆中添加数据 时间复杂度是 O(logN) 这里log是以2为底，如果添加N=8,则只需要遍历4次
+     *          100
+     *         /   \
+     *       88     96
+     *      /\      / \
+     *    81  18  55  76
      * @author lijinlin
      * @date 2021/8/16 16:51
      * @param item
@@ -121,22 +126,21 @@ public class MaxHeapDemo {
             //根据定义索引的父节点索引进行交换当前定义索引
             //定义索引 = 定义索引的父节点索引
         while(hasParent(index) && parent(index) < array[index]){
-            //todo
-            //swap(getParentIndex(index),index);
+            //根据思路交换不一定对
+            swap(getParentIndex(index),index);
             index = getParentIndex(index);
         }
     }
-
     //时间复杂度O(logN)
-    public  void  poll(){
+    public  int  poll(){
         if(size == 0){
             throw new NoSuchElementException();
         }
         int element = array[0];
         array[0] = array[size - 1];
         size -- ;
-        //todo
         heapIfyDown();
+        return element;
     }
     private void heapIfyDown(){
         int index = 0;
@@ -146,14 +150,21 @@ public class MaxHeapDemo {
                 largerChildIndex = getRightChildIndex(index);
             }
             if(array[index] < array[largerChildIndex]){
-                //todo
-                //swap(index,largerChildIndex);
+                swap(index,largerChildIndex);
             }else {
                 break;
             }
             index = largerChildIndex;
         }
     }
+
+    private void swap(int index1,int index2){
+        int temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+    }
+
+
 
     public int peek(){
         if(size == 0){
