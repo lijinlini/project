@@ -21,6 +21,11 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
+        Integer monitorCount = 1;
+        Integer purchaseNum = 2;
+        System.out.println(monitorCount.compareTo(purchaseNum));
+
+
         int a = 4;
         int b = -3;
         int c = 4;
