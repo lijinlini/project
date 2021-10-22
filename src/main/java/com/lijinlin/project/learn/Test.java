@@ -1,5 +1,7 @@
 package com.lijinlin.project.learn;
 
+import com.lijinlin.project.learn.DesignPattern.bridging.Phone;
+import com.lijinlin.project.learn.DesignPattern.bridging.XiaoMi;
 import org.openjdk.jol.info.ClassLayout;
 
 import java.io.FileInputStream;
@@ -21,6 +23,8 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
+
+
         Integer monitorCount = 1;
         Integer purchaseNum = 2;
         System.out.println(monitorCount.compareTo(purchaseNum));
