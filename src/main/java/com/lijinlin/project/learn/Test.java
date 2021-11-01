@@ -1,5 +1,6 @@
 package com.lijinlin.project.learn;
 
+import com.alibaba.fastjson.JSON;
 import com.lijinlin.project.learn.DesignPattern.bridging.Phone;
 import com.lijinlin.project.learn.DesignPattern.bridging.XiaoMi;
 import org.openjdk.jol.info.ClassLayout;
@@ -23,25 +24,9 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-
-
-        Integer monitorCount = 1;
-        Integer purchaseNum = 2;
-        System.out.println(monitorCount.compareTo(purchaseNum));
-
-
-        int a = 4;
-        int b = -3;
-        int c = 4;
-        int d = 0;
-        int e = (0 - 1) / 2;
-        System.out.println((a - 1) / 2);
-        System.out.println((b - 1) / 2);
-        System.out.println(a < c);
-        System.out.println((d - 1) / 2);
-        System.out.println((b - 1) / 3);
-        System.out.println((0 - 1) / 2);
-        System.out.println(e);
+        QuickSort quickSort = new QuickSort();
+        Animal<QuickSort> person = new Person<QuickSort>("qwer",1,4,quickSort);
+        System.out.println(JSON.toJSONString(person));
     }
 
     //二叉树层序遍历

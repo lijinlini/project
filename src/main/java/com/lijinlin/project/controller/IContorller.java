@@ -1,5 +1,8 @@
 package com.lijinlin.project.controller;
 
+import com.lijinlin.project.learn.Animal;
+import com.lijinlin.project.learn.Person;
+import com.lijinlin.project.learn.QuickSort;
 import com.lijinlin.project.service.PrototypeService;
 import com.lijinlin.project.service.SingletionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,8 @@ public class IContorller {
 
     @RequestMapping("/hello")
     public String hello() {
+        QuickSort quickSort = new QuickSort();
+        Animal<QuickSort> person = new Person<>("name",1,2,quickSort);
         return "hello,Sprintboot";
     }
 

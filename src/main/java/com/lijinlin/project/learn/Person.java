@@ -1,18 +1,10 @@
 package com.lijinlin.project.learn;
 
-public class Person {
-    private String name;
+import java.io.Serializable;
+
+public class Person<T> extends Animal<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
     private int ID;
-    public String speed;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getID() {
         return ID;
     }
@@ -21,20 +13,8 @@ public class Person {
         ID = iD;
     }
 
-    public Person(String name, int ID) {
-        this.name = name;
+    public Person(String name,int ID,Integer legCount,T value) {
+        super(name,legCount,value);
         this.ID = ID;
-    }
-
-    public Person(int ID) {
-        this.ID = ID;
-    }
-
-    public void Speak() {
-        System.out.println("Hello! " + "My name is " + name);
-    }
-
-    public void run(String speed) {
-        System.out.println("I can run " + speed + " KM!!!");
     }
 }

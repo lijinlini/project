@@ -104,7 +104,7 @@
             <artifactId>junit</artifactId>
         </dependency>
         <!--end结束-->
-        <!--切面编成开始-->
+        <!--切面编程开始-->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjrt</artifactId>
@@ -115,9 +115,15 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.8.6</version>
         </dependency>
-        <!--切面变成结束-->
+        <!--切面编程结束-->
+        <!--netty maven引入开始-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.33.Final</version>
+        </dependency>
 
-
+        <!--netty maven引入结束-->
     </dependencies>
 
     <build>
