@@ -24,9 +24,9 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        QuickSort quickSort = new QuickSort();
-        Animal<QuickSort> person = new Person<QuickSort>("qwer",1,4,quickSort);
-        System.out.println(JSON.toJSONString(person));
+        for(int j = 0; j< 100; j++){
+            System.out.println((int)((Math.random()*9+1)*100000));
+        }
     }
 
     //二叉树层序遍历
