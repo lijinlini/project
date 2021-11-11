@@ -9,13 +9,7 @@ import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.nio.channels.Selector;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -24,9 +18,13 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        for(int j = 0; j< 100; j++){
-            System.out.println((int)((Math.random()*9+1)*100000));
-        }
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DAY_OF_YEAR, 1);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        System.out.println(cal.getTime());
     }
 
     //二叉树层序遍历
