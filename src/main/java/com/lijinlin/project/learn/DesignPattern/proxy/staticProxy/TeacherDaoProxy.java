@@ -10,8 +10,13 @@ public class TeacherDaoProxy implements ITeacherDao{
 
     @Override
     public void teach() {
-        System.out.println("代理开始。。。");
+
+        /**
+         * 优点：在不修改目标对象的功能前提下，能通过代理对象对目标功能扩展
+         * 缺点：因为代理对象需要与目标对象实现一样的接口，所以会有很多代理类，一旦接口增加方法，目标对象与代理对象都需要维护
+         */
+        System.out.println("代理开始 完成某些操作。。。。。");
         target.teach();
-        System.out.println("代理结束。。。");
+        System.out.println("提交。。。");
     }
 }

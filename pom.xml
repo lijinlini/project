@@ -122,8 +122,14 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.33.Final</version>
         </dependency>
-
         <!--netty maven引入结束-->
+        <!--cglib代理引入开始-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <!--cglib代理引入结束-->
     </dependencies>
 
     <build>
