@@ -17,6 +17,6 @@ public class TeacherDaoProxy implements ITeacherDao{
          */
         System.out.println("代理开始 完成某些操作。。。。。");
         target.teach();
-        System.out.println("提交。。。");
+        System.out.println("代理结束。。。");
     }
 }
