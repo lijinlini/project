@@ -30,10 +30,10 @@ public class ProxyFactory implements MethodInterceptor {
 
     /**
      *
-     * @param o this,the enhanced object 增强器自己
-     * @param method
-     * @param args
-     * @param methodProxy used to invoke super 用于去调用父类的方法
+     * @param o this,the enhanced object 表示增强的对象，即实现这个接口类的一个对象； teacherDao
+     * @param method 表示要被拦截的方法；teach()
+     * @param args 表示要被拦截方法的参数；这里没有参数
+     * @param methodProxy used to invoke super 当前执行方法的代理对象
      * @return
      * @throws Throwable
      */
