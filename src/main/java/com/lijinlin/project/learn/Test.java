@@ -19,17 +19,9 @@ public class Test {
 
 
     public static void main(String[] args) throws Exception {
-        Map<Long, List<Double>> map = new HashMap<Long, List<Double>>();
-        List<Double> list = new ArrayList<>();
-        map.put(1L, list);
-
-        List<Double> a = map.get(6L);
-        if(CollectionUtils.isEmpty(a)){
-            System.out.println("asdfasd");
-        }
-       /* Long a = 1L;
-        Long b = 2L;
-        System.out.println(Long.compare(b,a));*/
+        StringBuilder stringBuilder = new StringBuilder("abcde");
+        System.out.println(stringBuilder.reverse().toString());
+        stringBuilder.reverse().toString();
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {
@@ -60,6 +52,7 @@ public class Test {
         }
 
         Collections.sort(list, new Comparator<MyMap<Long, V>>() {
+            @Override
             public int compare(MyMap<Long, V> o1, MyMap<Long, V> o2) {
                 if(o1.getValue() == o2.getValue()) {
                     return Long.compare(o1.getKey(),o2.getKey());
