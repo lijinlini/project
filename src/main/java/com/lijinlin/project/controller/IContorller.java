@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.InputStream;
@@ -19,9 +20,9 @@ import java.util.Properties;
 @RestController
 @Scope("prototype")
 public class IContorller {
-    @Autowired
+    @Resource
     private SingletionService singletionService;
-    @Autowired
+    @Resource
     private PrototypeService prototypeService;
 
     @RequestMapping("/hello")

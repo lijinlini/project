@@ -1,0 +1,29 @@
+# spring.profiles.active=dev
+server:
+  port:8080
+# ??????
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password:
+    url: jdbc:mysql://127.0.0.1:3306/project?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  #配置实体对应得路径
+  type-aliases-package: com.lijinlin.project.pojo
+  #xml对应得路径
+  mapper-locations: classpath:/mybatis/*.xml
+  configuration:
+    cache-enabled: true
+
+#打印sql
+logging:
+    level:
+      com.lijinlin.project.dao: debug
+
+
+
+
+

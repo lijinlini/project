@@ -3,6 +3,8 @@ package com.lijinlin.project.learn;
 import com.alibaba.fastjson.JSON;
 import com.lijinlin.project.learn.DesignPattern.bridging.Phone;
 import com.lijinlin.project.learn.DesignPattern.bridging.XiaoMi;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openjdk.jol.info.ClassLayout;
 import org.springframework.util.CollectionUtils;
 
@@ -16,12 +18,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class Test {
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
-
-
+    private static final Logger logger = LogManager.getLogger(Test.class);
+    public static List listByBaseType(Integer baseTypeId,Integer symbol) {
+       logger.info("Processing trade with id:[{}] and symbol : [{}] ", baseTypeId, symbol);
+       return null;
+    }
     public static void main(String[] args) throws Exception {
-        StringBuilder stringBuilder = new StringBuilder("abcde");
-        System.out.println(stringBuilder.reverse().toString());
-        stringBuilder.reverse().toString();
+        listByBaseType(1,2);
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {

@@ -10,5 +10,6 @@ public class Log4jErrorTest {
         // 注意这个变量
         String error = "${java:vm}";
         logger.error("==============危险打印，{}", error);
+
     }
 }
