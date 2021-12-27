@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.lijinlin.project.dao.UserDao">
-    <!--开启二级缓存-->
-    <!--<cache/>-->
+    <!--开启二级缓存 eviction对象回收策略 LRU FIFO SOFT WEAK默认LRU flushInterval:缓存刷新时间单位秒 size：缓存引用数目
+     readOnly：默认false 只读的缓存会给所有调用者返回缓存对象的同意给实例，因此这些对象不能被修改，提供了很重要的性能优势，false可读写的缓存会返回缓存对象的拷贝，慢一些但是安全-->
+    <cache eviction="LRU" flushInterval = "6000" size="1024" readOnly="false"/>
     <select id="getUserList" resultType="com.lijinlin.project.pojo.User">
         SELECT
         id,

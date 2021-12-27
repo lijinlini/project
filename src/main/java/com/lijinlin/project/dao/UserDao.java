@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 /**将userdao交给spring容器管理*/
 @Repository
-@CacheNamespace
+/*@CacheNamespace*/
 public interface UserDao {
     /**
      *    查询所有用户
