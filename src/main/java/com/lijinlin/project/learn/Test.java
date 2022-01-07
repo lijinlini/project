@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openjdk.jol.info.ClassLayout;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.FileInputStream;
 import java.math.BigDecimal;
@@ -15,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.Collectors;
 
 public class Test {
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
@@ -24,7 +26,21 @@ public class Test {
        return null;
     }
     public static void main(String[] args) throws Exception {
-        listByBaseType(1,2);
+        List<Integer> templateIds = new ArrayList<>(5);
+        templateIds.add(13508);
+        /*templateIds.add(15120);
+        templateIds.add(10585);
+        templateIds.add(14423);
+        templateIds.add(11694);*/
+        Map<Integer,Integer> map = new HashMap<>();
+        try {
+            map = templateIds.stream().collect(Collectors.toMap(item -> item, item -> {
+                return item;
+            }));
+            System.out.println(map);
+        } catch (Exception e) {
+            //log.error("feed get cutoutTemplates error {}", e);
+        }
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {

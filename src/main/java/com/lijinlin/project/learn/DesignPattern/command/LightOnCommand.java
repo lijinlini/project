@@ -1,7 +1,7 @@
 package com.lijinlin.project.learn.DesignPattern.command;
 
 public class LightOnCommand implements Command{
-    //聚会LightReceiver
+    //聚合LightReceiver
     LightReceiver light;
 
     public LightOnCommand(LightReceiver light) {
