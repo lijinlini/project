@@ -1,43 +1,92 @@
 package com.lijinlin.project.learn;
 
+import com.alibaba.fastjson.JSON;
+import com.lijinlin.project.learn.DesignPattern.bridging.Phone;
+import com.lijinlin.project.learn.DesignPattern.bridging.XiaoMi;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openjdk.jol.info.ClassLayout;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.io.FileInputStream;
 import java.math.BigDecimal;
 import java.nio.channels.Selector;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.Collectors;
 
 public class Test {
     private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
-
-
+    private static final Logger logger = LogManager.getLogger(Test.class);
+    public static List listByBaseType(Integer baseTypeId,Integer symbol) {
+       logger.info("Processing trade with id:[{}] and symbol : [{}] ", baseTypeId, symbol);
+       return null;
+    }
     public static void main(String[] args) throws Exception {
-        Integer monitorCount = 1;
-        Integer purchaseNum = 2;
-        System.out.println(monitorCount.compareTo(purchaseNum));
+        List<Integer> templateIds = new ArrayList<>(5);
+        templateIds.add(13508);
+        /*templateIds.add(15120);
+        templateIds.add(10585);
+        templateIds.add(14423);
+        templateIds.add(11694);*/
+        Map<Integer,Integer> map = new HashMap<>();
+        try {
+            map = templateIds.stream().collect(Collectors.toMap(item -> item, item -> {
+                return item;
+            }));
+            System.out.println(map);
+        } catch (Exception e) {
+            //log.error("feed get cutoutTemplates error {}", e);
+        }
+    }
 
+    public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {
+        class MyMap<M, N> {
+            private M key;
+            private N value;
+            private M getKey() {
+                return key;
+            }
+            private void setKey(M key) {
+                this.key = key;
+            }
+            private N getValue() {
+                return value;
+            }
+            private void setValue(N value) {
+                this.value = value;
+            }
+        }
 
-        int a = 4;
-        int b = -3;
-        int c = 4;
-        int d = 0;
-        int e = (0 - 1) / 2;
-        System.out.println((a - 1) / 2);
-        System.out.println((b - 1) / 2);
-        System.out.println(a < c);
-        System.out.println((d - 1) / 2);
-        System.out.println((b - 1) / 3);
-        System.out.println((0 - 1) / 2);
-        System.out.println(e);
+        List<MyMap<Long, V>> list = new ArrayList<MyMap<Long, V>>();
+        for (Iterator<Long> i = map.keySet().iterator(); i.hasNext(); ) {
+            MyMap<Long, V> my = new MyMap<Long, V>();
+            Long key = i.next();
+            my.setKey(key);
+            my.setValue(map.get(key));
+            list.add(my);
+        }
+
+        Collections.sort(list, new Comparator<MyMap<Long, V>>() {
+            @Override
+            public int compare(MyMap<Long, V> o1, MyMap<Long, V> o2) {
+                if(o1.getValue() == o2.getValue()) {
+                    return Long.compare(o1.getKey(),o2.getKey());
+                }else{
+                    return new Double(o2.getValue().doubleValue()).compareTo(new Double(o1.getValue().doubleValue()));
+                }
+            }
+        });
+
+        Map<Long, V> sortMap = new LinkedHashMap<Long, V>();
+        for(int i = 0, k = list.size(); i < k; i++) {
+            MyMap<Long, V> my = list.get(i);
+            sortMap.put(my.getKey(), my.getValue());
+        }
+        return sortMap;
     }
 
     //二叉树层序遍历

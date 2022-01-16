@@ -1,8 +1,27 @@
 package com.lijinlin.project.learn;
 
-public class Animal {
+import java.io.Serializable;
+
+public class Animal<T> implements Serializable {
+    private static final long serialVersionUID = 1L;
     private String name;
     private Integer legCount;
+
+    private T value;
+
+    public Animal(String name, Integer legCount,T value) {
+        this.name = name;
+        this.legCount = legCount;
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
 
     public String getName() {
         return name;
