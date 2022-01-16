@@ -1,8 +1,6 @@
-package com.lijinlin.project.learn.DesignPattern.observer.normal;
+package com.lijinlin.project.learn.DesignPattern.observer.normal.improve;
 
-import com.lijinlin.project.learn.DesignPattern.observer.normal.improve.Observer;
-
-public class CurrentConditions implements Observer {
+public class BaiduSite implements Observer {
     /**
      *     温度，气压,湿度
      */
@@ -28,8 +26,9 @@ public class CurrentConditions implements Observer {
      * 显示
      */
     public void display(){
-        System.out.println("***Today mTemperature: " + temperature + "***");
-        System.out.println("***Today mPressure: " + pressure + "***");
-        System.out.println("***Today mHumidity: " + humidity + "***");
+        System.out.println("***百度网站 气温: " + temperature + "***");
+        System.out.println("***百度网站 气压: " + pressure + "***");
+        System.out.println("***百度网站 湿度: " + humidity + "***");
     }
+
 }
