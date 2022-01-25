@@ -170,6 +170,12 @@
             <version>1.2.4</version>
         </dependency>
         <!--数据库连接池 结束-->
+        <!--AOP 开始-->
+        <!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>-->
+        <!--AOP 结束-->
     </dependencies>
 
     <build>
