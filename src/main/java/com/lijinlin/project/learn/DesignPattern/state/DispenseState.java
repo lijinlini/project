@@ -23,6 +23,12 @@ public class DispenseState extends State{
      */
     @Override
     public void dispensePrize() {
-
+        if(raffleActivity.getCount() > 0){
+            System.out.println("恭喜中奖了");
+            raffleActivity.setState(raffleActivity.getNoRafflleState());
+        }else{
+            System.out.println("很遗憾奖品发送完了");
+            raffleActivity.setState(raffleActivity.getDispenseOutState());
+        }
     }
 }

@@ -25,5 +25,7 @@ public class DispenseOutState extends State {
     @Override
     public void dispensePrize() {
         System.out.println("奖品发完了，请下次再参加");
+  /*      System.out.println("抽奖活动结束");
+        System.exit(0);*/
     }
 }

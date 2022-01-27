@@ -12,7 +12,7 @@ public class RaffleActivity {
     /**
      * 四个属性表示四个状态
      */
-    State noRafflleState = new NoRaffleState(this);
+    State noRaffleState = new NoRaffleState(this);
     State canRaffleState = new CanRaffleState(this);
     State dispenseState = new DispenseState(this);
     State dispenseOutState = new DispenseOutState(this);
@@ -73,11 +73,11 @@ public class RaffleActivity {
     }
 
     public State getNoRafflleState() {
-        return noRafflleState;
+        return noRaffleState;
     }
 
     public void setNoRafflleState(State noRafflleState) {
-        this.noRafflleState = noRafflleState;
+        this.noRaffleState = noRafflleState;
     }
 
     public State getCanRaffleState() {
