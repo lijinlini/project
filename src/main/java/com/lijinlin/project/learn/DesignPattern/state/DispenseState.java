@@ -1,5 +1,8 @@
 package com.lijinlin.project.learn.DesignPattern.state;
 
+/**
+ * 发放奖品的状态
+ */
 public class DispenseState extends State{
     RaffleActivity raffleActivity;
 

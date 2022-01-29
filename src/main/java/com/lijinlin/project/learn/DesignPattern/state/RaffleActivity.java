@@ -65,7 +65,7 @@ public class RaffleActivity {
     public int getCount() {
         int curCount = count;
         count --;
-        return count;
+        return curCount;
     }
 
     public void setCount(int count) {

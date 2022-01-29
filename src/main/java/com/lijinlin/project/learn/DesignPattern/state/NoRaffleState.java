@@ -19,7 +19,7 @@ public class NoRaffleState extends State{
     @Override
     public void deductMoney() {
         System.out.println("扣除50积分成功，您可以抽奖了");
-
+        raffleActivity.setState(raffleActivity.getCanRaffleState());
     }
 
     /**

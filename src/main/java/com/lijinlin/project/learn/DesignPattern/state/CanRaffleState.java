@@ -28,9 +28,11 @@ public class CanRaffleState extends State{
         int num = r.nextInt(10);
         //百分之10中奖机会
         if(num == 0){
+            raffleActivity.setState(raffleActivity.getDispenseState());
             return true;
         }else{
-            System.out.println("没有抽中");
+            System.out.println("很遗憾没有抽中");
+            raffleActivity.setState(raffleActivity.getNoRafflleState());
             return false;
         }
     }
@@ -40,6 +42,6 @@ public class CanRaffleState extends State{
      */
     @Override
     public void dispensePrize() {
-        System.out.println("没有抽中,不能发方奖品");
+        System.out.println("没有抽中,不能发奖品");
     }
 }
