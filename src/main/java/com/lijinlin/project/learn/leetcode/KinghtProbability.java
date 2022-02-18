@@ -5,6 +5,8 @@ import java.util.List;
 
 public class KinghtProbability {
     /**
+     * 688. 骑士在棋盘上的概率
+     *
      * @param n      棋盘行列大小
      * @param k      走路步数
      * @param row    起始行坐标
@@ -13,55 +15,48 @@ public class KinghtProbability {
      */
     public double knightProbability(int n, int k, int row, int column) {
         //在棋盘中并且一步不走则一定还在棋盘中
-        if (k <= 0 && row <= n - 1 && column <= n - 1) {
+        if (k <= 0 && 0 <= row && row <= n - 1 && 0 <= column && column <= n - 1) {
             return 1;
         }
         //不在棋盘中并且一步不走则一定不在棋盘中
-        if (k <= 0 && (row > n - 1 || column > n - 1)) {
+        if (k <= 0 && (row > n - 1 || row < 0 || column > n - 1 || column < 0)) {
             return 0;
         }
-        double everyPossibility = 8;
-        //保存每一步的可能性
-        List<Double> possibilityList = new ArrayList<>(64);
         //每一步只有8个格子可以走 递归的思路
-        int notIn = 0;
-        for (int i = 0; i < 7; i++) {
-            if (row - 2 < 0 || column - 1 < 0 || row - 2 > n - 1 || column - 1 > n - 1) {
-                knightProbability(n, k - 1, row - 2, column - 1);
-                notIn++;
-            }
-            if (row - 1 < 0 || column - 2 < 0 || row - 1 > n - 1 || column - 2 > n - 1) {
-                knightProbability(n, k - 1, row - 1, column - 2);
-                notIn++;
-            }
-            if (row + 1 < 0 || column - 2 < 0 || row + 1 > n - 1 || column - 2 > n - 1) {
-                knightProbability(n, k - 1, row + 1, column - 2);
-                notIn++;
-            }
-            if (row + 2 < 0 || column - 1 < 0 || row + 2 > n - 1 || column - 1 > n - 1) {
-                knightProbability(n, k - 1, row + 2, column - 1);
-                notIn++;
-            }
-            if (row - 2 < 0 || column + 1 < 0 || row - 2 > n - 1 || column + 1 > n - 1) {
-                knightProbability(n, k - 1, row - 2, column + 1);
-                notIn++;
-            }
-            if (row - 1 < 0 || column + 2 < 0 || row - 1 > n - 1 || column + 2 > n - 1) {
-                knightProbability(n, k - 1, row - 1, column + 2);
-                notIn++;
-            }
-            if (row + 1 < 0 || column + 2 < 0 || row + 1 > n - 1 || column + 2 > n - 1) {
-                knightProbability(n, k - 1, row + 1, column + 2);
-                notIn++;
-            }
-            if (row + 2 < 0 || column + 1 < 0 || row + 2 > n - 1 || column + 1 > n - 1) {
-                knightProbability(n, k - 1, row + 2, column + 1);
-                notIn++;
-            }
+        int in = 8;
+        if (row - 2 < 0 || column - 1 < 0 || row - 2 > n - 1 || column - 1 > n - 1) {
+            in--;
         }
-        double curResult = (8 - notIn) / 8;
-
-
-        return 0.0;
+        if (row - 1 < 0 || column - 2 < 0 || row - 1 > n - 1 || column - 2 > n - 1) {
+            in--;
+        }
+        if (row + 1 < 0 || column - 2 < 0 || row + 1 > n - 1 || column - 2 > n - 1) {
+            in--;
+        }
+        if (row + 2 < 0 || column - 1 < 0 || row + 2 > n - 1 || column - 1 > n - 1) {
+            in--;
+        }
+        if (row - 2 < 0 || column + 1 < 0 || row - 2 > n - 1 || column + 1 > n - 1) {
+            in--;
+        }
+        if (row - 1 < 0 || column + 2 < 0 || row - 1 > n - 1 || column + 2 > n - 1) {
+            in--;
+        }
+        if (row + 1 < 0 || column + 2 < 0 || row + 1 > n - 1 || column + 2 > n - 1) {
+            in--;
+        }
+        if (row + 2 < 0 || column + 1 < 0 || row + 2 > n - 1 || column + 1 > n - 1) {
+            in--;
+        }
+        double curResult1 =knightProbability(n, k - 1, row - 2, column - 1);
+        double curResult2 =knightProbability(n, k - 1, row - 1, column - 2);
+        double curResult3 =knightProbability(n, k - 1, row + 1, column - 2);
+        double curResult4 =knightProbability(n, k - 1, row + 2, column - 1);
+        double curResult5 =knightProbability(n, k - 1, row - 2, column + 1);
+        double curResult6 =knightProbability(n, k - 1, row - 1, column + 2);
+        double curResult7 =knightProbability(n, k - 1, row + 1, column + 2);
+        double curResult8 =knightProbability(n, k - 1, row + 2, column + 1);
+        double curResult = in / 8;
+        return curResult ;
     }
 }
