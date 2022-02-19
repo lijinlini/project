@@ -3,6 +3,9 @@ package com.lijinlin.project.learn.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 1380. 矩阵中的幸运数 简单
+ */
 public class MatrixLuckyNumber {
     public static void main(String[] args) {
         int[][] matrix1 = new int[3][3];
