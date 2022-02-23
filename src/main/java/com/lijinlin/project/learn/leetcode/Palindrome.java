@@ -3,7 +3,7 @@ package com.lijinlin.project.learn.leetcode;
 
 public class Palindrome {
     public static void main(String[] args) {
-        int x = 1;
+        int x = 123321;
         System.out.println(isPalindrome1(x));
     }
 
@@ -37,34 +37,18 @@ public class Palindrome {
     }
 
     public static boolean isPalindrome1(int x) {
-        if (x < 0) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
             return false;
         }
-        if (x == 0) {
+        if (x == 0 || x <= 9) {
             return true;
         }
         //保存回文的数值
         int reverseNum = 0;
-        while (x % 10 >= 0) {
-            if (reverseNum > 0) {
-                reverseNum = reverseNum * 10 + x % 10;
-            } else {
-                reverseNum = x % 10;
-            }
-            if(x > 9){
-                x = (x - x % 10) / 10;
-            }
-            if (reverseNum >= x) {
-                break;
-            }
+        while (x > reverseNum) {
+            reverseNum = reverseNum * 10 + x % 10;
+            x = x / 10;
         }
-        if (x == reverseNum) {
-            return true;
-        } else {
-            if (reverseNum - reverseNum % 10 == x * 10 && x != 0 && reverseNum % 10 != 0) {
-                return true;
-            }
-            return false;
-        }
+        return x == reverseNum || x == reverseNum / 10;
     }
 }
