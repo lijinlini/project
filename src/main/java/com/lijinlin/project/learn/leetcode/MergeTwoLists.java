@@ -48,13 +48,38 @@ public class MergeTwoLists {
      * @return
      */
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode curNode = list1;
+        ListNode curNode = new ListNode(0);
+        ListNode nextNode = null;
         ListNode resNode = curNode;
-        while (curNode != null) {
-            if (list1.val == list2.val) {
-                curNode.next = list2;
-                list1 = list1.next;
+        while (list1 != null || list2 != null) {
+            ListNode minNode = new ListNode();
+            ListNode temp1 = list1;
+            ListNode temp2 = list2;
+            if(list1.val < list2.val){
+                if(curNode.val < list1.val){
+                    minNode = new ListNode(curNode.val,new ListNode(list1.val,list1.next));
+                }else{
+                    minNode = new ListNode(list1.val,new ListNode(curNode.val,curNode.next));
+                }
+            }else{
+                if(curNode.val < list2.val){
+                    minNode = curNode;
+                }else{
+                    minNode = list2;
+                }
+            }
+            curNode.next = minNode;
+            curNode = minNode;
+            list1 = list1.next;
+            list2 = list2.next;
+
+
+
+            /*if (curNode.val == list2.val) {
+                nextNode = list2;
                 list2 = list2.next;
+                list1 = list1.next;
+                curNode.next = nextNode;
                 curNode = curNode.next;
                 continue;
             }
@@ -69,7 +94,7 @@ public class MergeTwoLists {
                 list2 = list2.next;
                 curNode = curNode.next;
                 continue;
-            }
+            }*/
         }
         return resNode;
     }
