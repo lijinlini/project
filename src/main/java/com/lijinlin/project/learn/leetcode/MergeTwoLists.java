@@ -48,54 +48,21 @@ public class MergeTwoLists {
      * @return
      */
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode curNode = new ListNode(0);
-        ListNode nextNode = null;
-        ListNode resNode = curNode;
-        while (list1 != null || list2 != null) {
-            ListNode minNode = new ListNode();
-            ListNode temp1 = list1;
-            ListNode temp2 = list2;
+        //新链表的第一个节点firstResultNode
+        ListNode firstResultNode = new ListNode(-1);
+        ListNode newTailNode = firstResultNode;
+        firstResultNode.next = newTailNode;
+        while (list1 != null && list2 != null){
             if(list1.val < list2.val){
-                if(curNode.val < list1.val){
-                    minNode = new ListNode(curNode.val,new ListNode(list1.val,list1.next));
-                }else{
-                    minNode = new ListNode(list1.val,new ListNode(curNode.val,curNode.next));
-                }
+                newTailNode.next = list1;
+                list1 = list1.next;
             }else{
-                if(curNode.val < list2.val){
-                    minNode = curNode;
-                }else{
-                    minNode = list2;
-                }
-            }
-            curNode.next = minNode;
-            curNode = minNode;
-            list1 = list1.next;
-            list2 = list2.next;
-
-
-
-            /*if (curNode.val == list2.val) {
-                nextNode = list2;
+                newTailNode.next = list2;
                 list2 = list2.next;
-                list1 = list1.next;
-                curNode.next = nextNode;
-                curNode = curNode.next;
-                continue;
             }
-            if (list1.val < list2.val) {
-                curNode.next = list1;
-                list1 = list1.next;
-                curNode = curNode.next;
-                continue;
-            }
-            if (list1.val > list2.val) {
-                curNode.next = list2;
-                list2 = list2.next;
-                curNode = curNode.next;
-                continue;
-            }*/
+            newTailNode = newTailNode.next;
         }
-        return resNode;
+        newTailNode.next = list1 == null ? list2 : list1;
+        return firstResultNode.next;
     }
 }
