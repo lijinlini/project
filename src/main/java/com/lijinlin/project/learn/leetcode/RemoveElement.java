@@ -17,9 +17,9 @@ package com.lijinlin.project.learn.leetcode;
  */
 public class RemoveElement {
     public static void main(String[] args) {
-        int[] nums = {3,2,2,3};
+        int[] nums = {2,3};
         int val = 3;
-        System.out.println(removeElement(nums,val));
+        System.out.println(removeElementV2(nums,val));
     }
     /**
      * 双指针解决
@@ -43,4 +43,39 @@ public class RemoveElement {
         }
         return slowPoint;
     }
+
+    /**
+     * 优化双指针方法，从数组两头开始，如果左边的等于目标值则把最右边的值移动到左边位置处继续判断，每次出现相等都去移动，知道两个指针重合结束，返回重合的指针位置即可
+     * 好处：比从同一层减少了拷贝次数，只有需要时才拷贝
+     * @param nums
+     * @param val
+     * @return
+     */
+    public static int removeElementV2(int[] nums, int val) {
+        if(nums == null || nums.length == 0){
+            return 0;
+        }
+        int leftPoint = 0;
+        int length = nums.length;
+        int rightPoint = length - 1;
+        if(leftPoint == rightPoint){
+            if(nums[leftPoint] == val){
+                return 0;
+            }
+        }
+
+        while (leftPoint != rightPoint){
+            if(nums[leftPoint] ==  val){
+                nums[leftPoint] = nums[rightPoint];
+                rightPoint--;
+            }else{
+                leftPoint++;
+            }
+        }
+        if(nums[leftPoint] == val){
+            leftPoint--;
+        }
+        return ++leftPoint;
+    }
+
 }
