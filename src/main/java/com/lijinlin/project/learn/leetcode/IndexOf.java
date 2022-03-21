@@ -29,13 +29,16 @@ package com.lijinlin.project.learn.leetcode;
  */
 public class IndexOf {
     public static void main(String[] args) {
-        String haystack = "a", needle = "";
+        String haystack = "a", needle = "aa";
         System.out.println(strStr(haystack, needle));
     }
 
     public static int strStr(String haystack, String needle) {
-        if ("".equals(haystack) && "".equals(needle)) {
+        if ("".equals(needle)) {
             return 0;
+        }
+        if("".equals(haystack)){
+            return -1;
         }
         int result = -1;
         char[] source = haystack.toCharArray();
@@ -48,14 +51,14 @@ public class IndexOf {
             } else {
                 Boolean flag = true;
                 for (int j = 1; j < target.length; j++) {
-                    if(target[j] == source[i + j]){
+                    if (i + j < source.length && target[j] == source[i + j]) {
                         continue;
-                    }else {
+                    } else {
                         flag = false;
                         break;
                     }
                 }
-                if(flag){
+                if (flag) {
                     result = i;
                     break;
                 }
