@@ -1,14 +1,34 @@
 package com.lijinlin.project.learn;
 
+import com.lijinlin.project.pojo.Sku;
+
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Test1 {
     public static void main(String[] args) {
-        Set<Integer> a = new HashSet<>();
-        a.add(1);
-        a.add(1);
-        System.out.println(a);
+        List<Sku> items = new ArrayList<>(30);
+        Sku sku = new Sku();
+        sku.setId(1);
+        sku.setSkuName("1");
+        sku.setSkuNum(1);
+        Sku sku2 = new Sku();
+        sku2.setId(1);
+        sku2.setSkuName("1");
+        sku2.setSkuNum(1);
+        items.add(sku);
+        items.add(sku2);
+        /*List<Sku> employeesDisBySalary = items.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Sku::getId)))),ArrayList::new);*/
+        List<Sku> unique = items.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Sku::getSkuName))), ArrayList::new)
+        );
+        System.out.println("sdf");
     }
+
 
     //给定一个 字符串"(){}[]"判断字符串是否有效
     public static Boolean isTrue(String str) {
