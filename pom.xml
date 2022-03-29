@@ -185,11 +185,11 @@
         <!--grpc结束-->
 
         <!--谷歌翻译开始-->
-        <dependency>
+        <!--<dependency>
             <groupId>com.google.cloud</groupId>
             <artifactId>google-cloud-translate</artifactId>
             <version>2.1.11</version>
-        </dependency>
+        </dependency>-->
         <!--谷歌翻译结束-->
     </dependencies>
 
