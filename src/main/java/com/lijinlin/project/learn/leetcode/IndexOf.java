@@ -31,46 +31,36 @@ import java.util.Set;
  */
 public class IndexOf {
     public static void main(String[] args) {
-        String haystack = "a", needle = "aa";
+        String haystack = "hello", needle = "ll";
         System.out.println(strStrKMP(haystack, needle));
-    }
-
-    //                                    D
-    //计算模式串遇到不同字符时处理方式  A B A B C
-    public static int[] patternStrHandle(String patternStr) {
-        //根据前后缀匹配规则，计算出每个字符错了得时候应该跳到的位置
-        char[] patternArray = patternStr.toCharArray();
-        int[] next = new int[patternArray.length];
-        next[0] = 0;
-        int j = 0;
-        for (int i = 1; i < patternArray.length - 1; i++) {
-            while (j > 0 && patternArray[i] != patternArray[j]) {
-                j = patternArray[i - 1];
-            }
-            if (patternArray[i] == patternArray[j]) {
-                j++;
-            }
-            next[i] = j;
-        }
-        return next;
     }
 
     public static int strStrKMP(String haystack, String needle) {
         //1先处理needle，把needle中增加上状态，状态的保存形式不限，主要是可以根据第几个needle字符遇到什么字符可以得到什么状态即可，l
         // 可以用二维数组，也可以自己创建个对象，甚至使用map。
-        char[] patternArray = needle.toCharArray();
-        char[] strArray = haystack.toCharArray();
-        int[] next = patternStrHandle(needle);
-        int j = 0;
-        for (int i = 0; i < strArray.length; i++) {
-            while(j > 0 && haystack.charAt(i) != needle.charAt(j)){
-                j = next[i - 1];
+        int n = haystack.length(), m = needle.length();
+        if (m == 0) {
+            return 0;
+        }
+        int[] pi = new int[m];
+        for (int i = 1, j = 0; i < m; i++) {
+            while (j > 0 && needle.charAt(i) != needle.charAt(j)) {
+                j = pi[j - 1];
             }
-            if(haystack.charAt(i) != needle.charAt(j)){
+            if (needle.charAt(i) == needle.charAt(j)) {
                 j++;
             }
-            if(strArray.length == j){
-                return i - patternArray.length + 1;
+            pi[i] = j;
+        }
+        for (int i = 0, j = 0; i < n; i++) {
+            while (j > 0 && haystack.charAt(i) != needle.charAt(j)) {
+                j = pi[j - 1];
+            }
+            if (haystack.charAt(i) == needle.charAt(j)) {
+                j++;
+            }
+            if (j == m) {
+                return i - m + 1;
             }
         }
         return -1;
