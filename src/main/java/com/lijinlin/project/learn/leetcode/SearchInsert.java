@@ -8,12 +8,39 @@ package com.lijinlin.project.learn.leetcode;
  *
  */
 public class SearchInsert {
+    /**
+     * 二分法 是最直观的思路效率达标
+     * @param nums
+     * @param target
+     * @return
+     */
     public int searchInsert(int[] nums, int target) {
         if (nums == null || nums.length == 0){
             return 0;
         }
-
-        return 0;
-
+        int right = nums.length;
+        int left = 0;
+        int middlePosition = (right + left) / 2;
+        boolean notStopFlag = true;
+        int result = 0;
+        while(notStopFlag){
+            if(target > nums[middlePosition] ){
+                if(target <=  nums[middlePosition + 1]){
+                    result = middlePosition + 1;
+                    notStopFlag = false;
+                }
+                left = middlePosition;
+                //right = right;
+            }else{
+                if(target >=  nums[middlePosition - 1]){
+                    result = middlePosition - 1;
+                    notStopFlag = false;
+                }
+                //left = left;
+                right =  middlePosition;
+            }
+            middlePosition = (right + left) / 2;
+        }
+        return result;
     }
 }
