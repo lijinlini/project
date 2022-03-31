@@ -8,38 +8,51 @@ package com.lijinlin.project.learn.leetcode;
  *
  */
 public class SearchInsert {
+    public static void main(String[] args) {
+        int[] nums = new int[]{1,3,5,6,8};
+        int target = 9;
+        System.out.println(searchInsert(nums,target));
+    }
     /**
      * 二分法 是最直观的思路效率达标
      * @param nums
      * @param target
      * @return
      */
-    public int searchInsert(int[] nums, int target) {
+    public static int searchInsert(int[] nums, int target) {
         if (nums == null || nums.length == 0){
             return 0;
         }
-        int right = nums.length;
+        int right = nums.length - 1;
         int left = 0;
         int middlePosition = (right + left) / 2;
         boolean notStopFlag = true;
+        if(target < nums[left]){
+            return 0;
+        }
+        if(target > nums[right]){
+            return right + 1;
+        }
         int result = 0;
         while(notStopFlag){
             if(target > nums[middlePosition] ){
-                if(target <=  nums[middlePosition + 1]){
-                    result = middlePosition + 1;
-                    notStopFlag = false;
-                }
                 left = middlePosition;
-                //right = right;
-            }else{
-                if(target >=  nums[middlePosition - 1]){
-                    result = middlePosition - 1;
-                    notStopFlag = false;
-                }
-                //left = left;
+            }else if(target < nums[middlePosition]){
                 right =  middlePosition;
+            }else{
+                //等于
+                notStopFlag = false;
+                result = middlePosition;
             }
             middlePosition = (right + left) / 2;
+            if(right - left <= 1){
+                notStopFlag = false;
+                if(target == nums[left]){
+                    result = left;
+                }else{
+                    result = right;
+                }
+            }
         }
         return result;
     }
