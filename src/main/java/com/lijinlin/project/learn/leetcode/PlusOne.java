@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class PlusOne {
     public static void main(String[] args) {
-        int[] digits = new int[]{9};
+        int[] digits = new int[]{9,9};
         System.out.println(Arrays.stream(plusOne(digits)));
     }
     /**
@@ -28,7 +28,6 @@ public class PlusOne {
     public static int[] plusOne(int[] digits) {
         int length = digits.length;
         List<Integer> list = new ArrayList<>(length + 1);
-        int[] result = null;
         int addNum = 0;
         if(digits[length - 1] + 1 > 9){
             addNum = 1;
@@ -37,6 +36,7 @@ public class PlusOne {
                     if(i != 0){
                         list.add(0);
                     }else{
+                        list.add(0);
                         list.add(1);
                     }
                 }else{
@@ -47,7 +47,7 @@ public class PlusOne {
         }
         if(list.size() != 0){
             int size = list.size();
-            result = new int[list.size()];
+            int[] result = new int[list.size()];
             int i = size - 1;
             for(Integer num : list){
                 result[i] = num;
