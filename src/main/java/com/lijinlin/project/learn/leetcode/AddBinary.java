@@ -19,9 +19,9 @@ package com.lijinlin.project.learn.leetcode;
  */
 public class AddBinary {
     public static void main(String[] args) {
-        String a = "11";
+        String a = "110";
         String b = "1";
-        System.out.println(addBinary(a, b));
+        System.out.println(addBinaryOfficial(a, b));
     }
     public static String addBinaryOfficial(String a, String b) {
         StringBuffer ans = new StringBuffer();
