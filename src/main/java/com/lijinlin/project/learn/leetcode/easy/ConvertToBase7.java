@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.leetcode;
+package com.lijinlin.project.learn.leetcode.easy;
 
 public class ConvertToBase7 {
     public static void main(String[] args) {

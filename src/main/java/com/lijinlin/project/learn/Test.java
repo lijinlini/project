@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 import java.nio.channels.Selector;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class Test {
@@ -25,22 +25,27 @@ public class Test {
        logger.info("Processing trade with id:[{}] and symbol : [{}] ", baseTypeId, symbol);
        return null;
     }
-    public static void main(String[] args) throws Exception {
-        List<Integer> templateIds = new ArrayList<>(5);
-        templateIds.add(13508);
-        /*templateIds.add(15120);
-        templateIds.add(10585);
-        templateIds.add(14423);
-        templateIds.add(11694);*/
-        Map<Integer,Integer> map = new HashMap<>();
-        try {
-            map = templateIds.stream().collect(Collectors.toMap(item -> item, item -> {
-                return item;
-            }));
-            System.out.println(map);
-        } catch (Exception e) {
-            //log.error("feed get cutoutTemplates error {}", e);
+    public static void main(String[] args) {
+
+        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 20, 60, TimeUnit.SECONDS, new LinkedBlockingQueue(2000));
+        Future<String> future=  threadPoolExecutor.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                throw new Exception("ceshi");
+                //Thread.sleep(10000);
+                //return "111";
+            }
+        });
+        logger.info("222");
+        String returnThread = "";
+        try{
+            returnThread = future.get(5L,TimeUnit.SECONDS);
+        }catch (Exception e){
+            logger.error("超时",e);
         }
+
+        logger.info("returnThread" + returnThread);
+
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {

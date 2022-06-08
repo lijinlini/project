@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.leetcode;
+package com.lijinlin.project.learn.leetcode.easy;
 
 /**
  * 58. 最后一个单词的长度

@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.leetcode;
+package com.lijinlin.project.learn.leetcode.easy;
 
 /**
  * 69. x 的平方根

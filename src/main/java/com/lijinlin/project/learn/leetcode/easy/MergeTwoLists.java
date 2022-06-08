@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.leetcode;
+package com.lijinlin.project.learn.leetcode.easy;
 
 public class MergeTwoLists {
     public static void main(String[] args) {

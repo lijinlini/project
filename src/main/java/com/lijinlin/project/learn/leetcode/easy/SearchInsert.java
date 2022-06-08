@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn.leetcode;
+package com.lijinlin.project.learn.leetcode.easy;
 
 /**
  * 35. 搜索插入位置
