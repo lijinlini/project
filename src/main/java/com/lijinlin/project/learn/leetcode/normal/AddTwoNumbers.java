@@ -1,5 +1,7 @@
 package com.lijinlin.project.learn.leetcode.normal;
 
+import java.awt.*;
+
 /**
  * 2. 两数相加
  * 给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。
@@ -20,11 +22,23 @@ package com.lijinlin.project.learn.leetcode.normal;
  */
 public class AddTwoNumbers {
     public static void main(String[] args) {
+        ListNode aNode1 = new ListNode(9);
+        ListNode aNode2 = new ListNode(9);
+        //ListNode aNode3 = new ListNode(3);
+        aNode1.next = aNode2;
+        //aNode2.next = aNode3;
 
+        ListNode bNode1 = new ListNode(9);
+        ListNode bNode2 = new ListNode(9);
+        ListNode bNode3 = new ListNode(9);
+        bNode1.next = bNode2;
+        bNode2.next = bNode3;
+
+        System.out.println(addTwoNumbers(aNode1,bNode1).val);
 
 
     }
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         /**
          * 使用do while循环 直到循环完两个链表之中返回
          */
@@ -33,23 +47,61 @@ public class AddTwoNumbers {
         //是否进1
         Boolean isEnterOne = false;
         ListNode resultNode = new ListNode(0);
+        ListNode preNode = new ListNode(-1);
         do{
+            ListNode curNode = new ListNode(0);
+            int l1Val = 0;
+            int l2Val = 0;
+            if(l1 != null){
+                l1Val = l1.val;
+                l1 = l1.next;
+            }
+            if(l2 != null){
+                l2Val = l2.val;
+                l2 = l2.next;
+            }
             //先算第一个相加的结果
-            curRes = l1.val + l2.val;
+            curRes = l1Val + l2Val;
             if(isEnterOne){
                 curRes = curRes + 1;
             }
-
             isEnterOne = false;
             if(curRes > 9){
+                curRes = curRes - 10;
                 isEnterOne = true;
+            }
+            curNode.val = curRes;
+            preNode.next = curNode;
+            if(preNode.val == -1){
+                resultNode.next = preNode;
+            }
+            preNode = curNode;
+
+            if(l1 == null && l2 == null){
+                if(isEnterOne){
+                    curNode = new ListNode(1);
+                    preNode.next = curNode;
+                    isEnterOne = false;
+                }
+            }
+            if(l1 == null && l2 != null){
+                if(isEnterOne){
+                    l2.val = l2.val + 1;
+                    isEnterOne = false;
+                }
+            }
+            if(l1 != null && l2 == null){
+                if(isEnterOne){
+                    l1.val = l1.val + 1;
+                    isEnterOne = false;
+                }
             }
 
         }while (isEnterOne || l1 != null || l2 != null);
 
-        return null;
+        return resultNode.next.next;
     }
-    class ListNode {
+    static class ListNode {
         int val;
         ListNode next;
 
