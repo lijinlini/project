@@ -13,7 +13,37 @@ package com.lijinlin.project.learn.leetcode.normal;
 public class MaxArea {
     public static void main(String[] args) {
         int[] a = {1,8,6,2,5,4,8,3,7};
-        System.out.println(maxAreaViolence(a));
+        System.out.println(maxAreaDoublePoint(a));
+    }
+    /**
+     * 双指针
+     * @param height
+     * @return
+     */
+    public static int maxAreaDoublePoint(int[] height) {
+        int max = 0;
+        int leftPoint = 0;
+        int rightPoint = height.length - 1;
+        while (leftPoint != rightPoint){
+            int leftValue = height[leftPoint];
+            int rightValue = height[rightPoint];
+            int curHeight = 0;
+            if(leftValue < rightValue){
+                curHeight = leftValue;
+            }else{
+                curHeight = rightValue;
+            }
+            int tempMax = curHeight * (rightPoint - leftPoint);
+            if(tempMax > max){
+                max = tempMax;
+            }
+            if(leftValue < rightValue){
+                leftPoint++;
+            }else{
+                rightPoint--;
+            }
+        }
+        return max;
     }
 
     /**
@@ -40,4 +70,5 @@ public class MaxArea {
         }
         return max;
     }
+
 }
