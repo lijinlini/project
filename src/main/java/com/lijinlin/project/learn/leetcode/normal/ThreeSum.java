@@ -41,26 +41,44 @@ public class ThreeSum {
         int rightPoint = nums.length - 1;
         List<List<Integer>> resultList = new ArrayList<>(64);
         for (int i = 0; i < nums.length - 1; i++) {
-            List<Integer> list = new ArrayList<>();
-            if(i == leftPoint || i == rightPoint){
+            List<List<Integer>> list = new ArrayList<>();
+            if(i > 0 && nums[i] == nums[i -1]){
                 continue;
             }
-            while(nums[i] + nums[leftPoint] + nums[rightPoint] > 0 && leftPoint != rightPoint){
-                rightPoint--;
-            }
-            while(nums[i] + nums[leftPoint] + nums[rightPoint] < 0 && leftPoint != rightPoint){
-                leftPoint++;
-            }
-            if(leftPoint == rightPoint || i == leftPoint || i == rightPoint){
-                continue;
-            }
-            if(nums[i] + nums[leftPoint] + nums[rightPoint] == 0){
-                list.add(nums[i]);
-                list.add(nums[leftPoint]);
-                list.add(nums[rightPoint]);
-            }
-            resultList.add(list);
+            leftPoint = i + 1;
+            list = twoSum(i,leftPoint,rightPoint,-nums[i],nums);
+            resultList.addAll(list);
         }
         return resultList;
+    }
+
+    private static List<List<Integer>> twoSum(int curPoint,int leftPoint,int rightPoint,int target,int[] nums){
+        List<List<Integer>> list = new ArrayList<>();
+        while(leftPoint < rightPoint){
+            int sum = nums[leftPoint] + nums[rightPoint];
+            if(sum == target){
+                List<Integer> list1 = new ArrayList<>();
+                list1.add(nums[leftPoint]);
+                list1.add(nums[curPoint]);
+                list1.add(nums[rightPoint]);
+                list.add(list1);
+                while(leftPoint < rightPoint && nums[rightPoint] == nums[rightPoint - 1]){
+                    rightPoint --;
+                }
+                rightPoint --;
+                while(leftPoint < rightPoint && nums[leftPoint] == nums[leftPoint + 1]){
+                    leftPoint ++;
+                }
+                leftPoint ++;
+            }
+            if(sum > target){
+                rightPoint--;
+            }
+            if(sum < target){
+                leftPoint ++;
+            }
+
+        }
+        return list;
     }
 }
