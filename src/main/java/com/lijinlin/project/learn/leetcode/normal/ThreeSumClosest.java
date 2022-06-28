@@ -1,6 +1,8 @@
 package com.lijinlin.project.learn.leetcode.normal;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 16. 最接近的三数之和
@@ -19,7 +21,7 @@ import java.util.Arrays;
  */
 public class ThreeSumClosest {
     public static void main(String[] args) {
-        int[] nums = {-4,-1,1,2};
+        int[] nums = {-3,0,1,2};
         System.out.println(threeSumClosest(nums, 1));
     }
 
@@ -32,18 +34,21 @@ public class ThreeSumClosest {
      */
     public static int threeSumClosest(int[] nums, int target) {
         int rightPoint = nums.length - 1;
-        Integer minSum = null;
+        int minSum = 0;
+        boolean isFirst = true;
         Arrays.sort(nums);
         for (int curPoint = 0; curPoint < nums.length; curPoint++) {
             if(curPoint > 0 && nums[curPoint] == nums[curPoint - 1]){
                 continue;
             }
-            int tempSum = twoSumClosest(curPoint + 1,rightPoint,curPoint,target - nums[curPoint],nums);
-            if(minSum == null){
-                minSum = tempSum;
+            Map<String,Integer> resultMap = twoSumClosest(curPoint + 1,rightPoint,curPoint,target - nums[curPoint],nums);
+            if(resultMap.get("have") == 0){
+                continue;
             }
-            if(tempSum < minSum){
+            int tempSum =  resultMap.get("minSum");
+            if(isFirst || Math.abs(tempSum - target) <= Math.abs(minSum - target)){
                 minSum = tempSum;
+                isFirst = false;
             }
 
         }
@@ -52,10 +57,14 @@ public class ThreeSumClosest {
     /**
      * 返回当前指针下三个数相加最接近答案得和
      */
-    public static int twoSumClosest(int leftPoint,int rightPoint,int curPoint,int target,int[] nums){
+    public static Map<String,Integer> twoSumClosest(int leftPoint, int rightPoint, int curPoint, int target, int[] nums){
         boolean isFirst = true;
         int curMin = 0;
         int absCurMin = 0;
+        int curValue = nums[curPoint];
+        int minSum = 0;
+        Map<String,Integer> result = new HashMap<>();
+        result.put("have",0);
         while(leftPoint < rightPoint){
             int tempMin = 0;
             int leftValue = nums[leftPoint];
@@ -64,20 +73,40 @@ public class ThreeSumClosest {
             tempMin = target - leftValue - rightValue;
             int absTempMin = Math.abs(tempMin);
             absCurMin = Math.abs(curMin);
+            if(tempMin == 0){
+                if(isFirst || absTempMin < absCurMin){
+                    curMin = tempMin;
+                    minSum = curValue + nums[leftPoint] + nums[rightPoint];
+                    result.put("minSum",minSum);
+                    result.put("have",1);
+                    isFirst = false;
+                    return result;
+                }
+          /*      while(leftPoint < rightPoint && nums[leftPoint] == nums[leftPoint + 1]){
+                    leftPoint ++;
+                }
+                leftPoint ++;
+                while(leftPoint < rightPoint && nums[rightPoint] == nums[rightPoint - 1]){
+                    rightPoint --;
+                }
+                rightPoint --;*/
+            }
             if(isFirst || absTempMin < absCurMin){
                 curMin = tempMin;
-                isFirst = false;
+                minSum = curValue + nums[leftPoint] + nums[rightPoint];
+                result.put("minSum",minSum);
+                result.put("have",1);
             }
-            if(leftPoint < rightPoint && nums[leftPoint] == nums[leftPoint + 1]){
+            if(tempMin > 0){
                 leftPoint ++;
             }
-            leftPoint ++;
-            if(leftPoint < rightPoint && nums[rightPoint] == nums[rightPoint - 1]){
+            if(tempMin < 0){
                 rightPoint --;
             }
-            rightPoint --;
+
+            isFirst = false;
 
         }
-        return curMin;
+        return result;
     }
 }
