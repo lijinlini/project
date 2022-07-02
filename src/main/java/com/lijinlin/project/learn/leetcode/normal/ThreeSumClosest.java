@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class ThreeSumClosest {
     public static void main(String[] args) {
-        int[] nums = {-3,0,1,2};
+        int[] nums = {-4,-1,1,2};
         System.out.println(threeSumClosest(nums, 1));
     }
 
@@ -41,7 +41,7 @@ public class ThreeSumClosest {
             if(curPoint > 0 && nums[curPoint] == nums[curPoint - 1]){
                 continue;
             }
-            Map<String,Integer> resultMap = twoSumClosest(curPoint + 1,rightPoint,curPoint,target - nums[curPoint],nums);
+            Map<String,Integer> resultMap = twoSumClosestV2(curPoint + 1,rightPoint,curPoint,target - nums[curPoint],nums);
             if(resultMap.get("have") == 0){
                 continue;
             }
@@ -55,9 +55,62 @@ public class ThreeSumClosest {
         return minSum;
     }
     /**
+     * 优化v2版本
+     * @param leftPoint
+     * @param rightPoint
+     * @param curPoint
+     * @param target
+     * @param nums
+     * @return
+     */
+    public static Map<String,Integer> twoSumClosestV2(int leftPoint, int rightPoint, int curPoint, int target, int[] nums){
+        boolean isFirst = true;
+        int absCurMin = 0;
+        int curValue = nums[curPoint];
+        int minSum = 0;
+        Map<String,Integer> result = new HashMap<>();
+        result.put("have",0);
+        while(leftPoint + 1 < rightPoint){
+            int leftValue = nums[leftPoint];
+            int rightValue = nums[rightPoint];
+            int LRSum = leftValue + rightValue;
+            //当前的差值的绝对值，该值越小越接近，为0 直接返回
+            int curABSDValue = Math.abs(LRSum - target);
+            if(curABSDValue == 0){
+                minSum = curValue + nums[leftPoint] + nums[rightPoint];
+                result.put("minSum",minSum);
+                result.put("have",1);
+                return result;
+            }
+            if(isFirst || curABSDValue < absCurMin){
+                absCurMin = curABSDValue;
+                minSum = curValue + nums[leftPoint] + nums[rightPoint];
+                result.put("minSum",minSum);
+                result.put("have",1);
+            }
+            while(leftPoint + 1 < rightPoint && target < LRSum){
+                rightPoint--;
+                LRSum = nums[leftPoint] + nums[rightPoint];
+                minSum = curValue + nums[leftPoint] + nums[rightPoint];
+                result.put("minSum",minSum);
+                result.put("have",1);
+            }
+            while(leftPoint + 1 < rightPoint && target> LRSum){
+                leftPoint++;
+                LRSum =  nums[leftPoint] + nums[rightPoint];
+                minSum = curValue + nums[leftPoint] + nums[rightPoint];
+                result.put("minSum",minSum);
+                result.put("have",1);
+            }
+            isFirst = false;
+        }
+        return result;
+    }
+    /**
      * 返回当前指针下三个数相加最接近答案得和
      */
     public static Map<String,Integer> twoSumClosest(int leftPoint, int rightPoint, int curPoint, int target, int[] nums){
+
         boolean isFirst = true;
         int curMin = 0;
         int absCurMin = 0;
@@ -75,21 +128,11 @@ public class ThreeSumClosest {
             absCurMin = Math.abs(curMin);
             if(tempMin == 0){
                 if(isFirst || absTempMin < absCurMin){
-                    curMin = tempMin;
                     minSum = curValue + nums[leftPoint] + nums[rightPoint];
                     result.put("minSum",minSum);
                     result.put("have",1);
-                    isFirst = false;
                     return result;
                 }
-          /*      while(leftPoint < rightPoint && nums[leftPoint] == nums[leftPoint + 1]){
-                    leftPoint ++;
-                }
-                leftPoint ++;
-                while(leftPoint < rightPoint && nums[rightPoint] == nums[rightPoint - 1]){
-                    rightPoint --;
-                }
-                rightPoint --;*/
             }
             if(isFirst || absTempMin < absCurMin){
                 curMin = tempMin;
@@ -102,11 +145,13 @@ public class ThreeSumClosest {
             }
             if(tempMin < 0){
                 rightPoint --;
-            }
 
+            }
             isFirst = false;
 
         }
         return result;
     }
+
+
 }
