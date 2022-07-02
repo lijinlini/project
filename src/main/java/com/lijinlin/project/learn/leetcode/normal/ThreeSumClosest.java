@@ -21,8 +21,9 @@ import java.util.Map;
  */
 public class ThreeSumClosest {
     public static void main(String[] args) {
-        int[] nums = {-4,-1,1,2};
-        System.out.println(threeSumClosest(nums, 1));
+        // 1,4,6
+        int[] nums = {1,2,4,8,16,32,64,128};
+        System.out.println(threeSumClosest(nums, 82));
     }
 
     /**
@@ -70,7 +71,7 @@ public class ThreeSumClosest {
         int minSum = 0;
         Map<String,Integer> result = new HashMap<>();
         result.put("have",0);
-        while(leftPoint + 1 < rightPoint){
+        while(leftPoint < rightPoint){
             int leftValue = nums[leftPoint];
             int rightValue = nums[rightPoint];
             int LRSum = leftValue + rightValue;
@@ -88,19 +89,25 @@ public class ThreeSumClosest {
                 result.put("minSum",minSum);
                 result.put("have",1);
             }
-            while(leftPoint + 1 < rightPoint && target < LRSum){
-                rightPoint--;
+
+            while(leftPoint < rightPoint && target < LRSum){
                 LRSum = nums[leftPoint] + nums[rightPoint];
                 minSum = curValue + nums[leftPoint] + nums[rightPoint];
                 result.put("minSum",minSum);
                 result.put("have",1);
+                rightPoint--;
             }
-            while(leftPoint + 1 < rightPoint && target> LRSum){
-                leftPoint++;
+            while(leftPoint < rightPoint && target> LRSum){
                 LRSum =  nums[leftPoint] + nums[rightPoint];
                 minSum = curValue + nums[leftPoint] + nums[rightPoint];
                 result.put("minSum",minSum);
                 result.put("have",1);
+                leftPoint++;
+            }
+            if(target < LRSum){
+                rightPoint--;
+            }else {
+                leftPoint++;
             }
             isFirst = false;
         }
