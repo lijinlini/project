@@ -1,6 +1,7 @@
 # spring.profiles.active=dev
 server:
-  port:8080
+  prot: 8080
+
 # ??????
 spring:
   datasource:

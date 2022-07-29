@@ -26,26 +26,33 @@ public class Test {
        return null;
     }
     public static void main(String[] args) {
-
-        ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 20, 60, TimeUnit.SECONDS, new LinkedBlockingQueue(2000));
-        Future<String> future=  threadPoolExecutor.submit(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                throw new Exception("ceshi");
-                //Thread.sleep(10000);
-                //return "111";
+        Thread t1 = new Thread(() -> {
+           for(int i = 0;i < 100;i++){
+               System.out.println("A" + i);
+               try{
+                   Thread.sleep(500);
+               }catch (InterruptedException e){
+                   e.printStackTrace();
+               }
+           }
+        });
+        Thread t2 = new Thread(() -> {
+            try{
+                t1.join();
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+            for(int i = 0;i < 100;i++){
+                System.out.println("A" + i);
+                try{
+                    Thread.sleep(500);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
             }
         });
-        logger.info("222");
-        String returnThread = "";
-        try{
-            returnThread = future.get(5L,TimeUnit.SECONDS);
-        }catch (Exception e){
-            logger.error("超时",e);
-        }
-
-        logger.info("returnThread" + returnThread);
-
+        t1.start();
+        t2.start();
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {
