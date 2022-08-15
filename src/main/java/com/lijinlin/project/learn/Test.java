@@ -26,33 +26,8 @@ public class Test {
        return null;
     }
     public static void main(String[] args) {
-        Thread t1 = new Thread(() -> {
-           for(int i = 0;i < 100;i++){
-               System.out.println("A" + i);
-               try{
-                   Thread.sleep(500);
-               }catch (InterruptedException e){
-                   e.printStackTrace();
-               }
-           }
-        });
-        Thread t2 = new Thread(() -> {
-            try{
-                t1.join();
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-            for(int i = 0;i < 100;i++){
-                System.out.println("A" + i);
-                try{
-                    Thread.sleep(500);
-                }catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-            }
-        });
-        t1.start();
-        t2.start();
+        String a = "aBcD";
+        System.out.println(a.toLowerCase());
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {
