@@ -1,5 +1,8 @@
 package com.lijinlin.project.server.aspect;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.aspectj.lang.JoinPoint;
@@ -14,19 +17,28 @@ import javax.servlet.http.HttpServletRequest;
  * @author lijinlin
  * @date2021年07月26日 10:38
  */
-@Service
+
+@Aspect
 public class LogAspect {
 
     private static final Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("execution(* com.lijinlin.project.controller..*(..))")
+    public LogAspect() {
+        System.out.println("Aspect initialization .....LogAspect.....");
+    }
+
+    @Pointcut(value = "execution(* *(..))")
     public void requestServer(){
 
     }
-    @Before("requestServer()")
-    public void doBefore(JoinPoint joinPoint){
-        ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = servletRequestAttributes.getRequest();
+    @Around("requestServer() && @annotation(StatsService)")
+    public void doA(ProceedingJoinPoint joinPoint){
+        try {
+            logger.info("doA");
+            joinPoint.proceed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
 
     }
 }
