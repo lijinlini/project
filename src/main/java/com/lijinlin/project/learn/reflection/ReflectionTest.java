@@ -1,19 +1,21 @@
 package com.lijinlin.project.learn.reflection;
 
+import java.lang.reflect.Field;
+
 //什么叫反射
 public class ReflectionTest {
     public static void main(String[] args) throws ClassNotFoundException {
         //通过反射获取类的Class对象
         Class c1 = Class.forName("com.lijinlin.project.learn.reflection.User");
-        Class c2 = Class.forName("com.lijinlin.project.learn.reflection.User");
-        Class c3 = Class.forName("com.lijinlin.project.learn.reflection.User");
-        Class c4 = Class.forName("com.lijinlin.project.learn.reflection.User");
         //一个类在内存中只有一个Class对象
         //一个类被加载后，类的整个结构都会被封装在Class对象中
-        System.out.println(c1.hashCode());
-        System.out.println(c2.hashCode());
-        System.out.println(c3.hashCode());
-        System.out.println(c4.hashCode());
+        //System.out.println(c1.hashCode());
+        try{
+            Field field = c1.getDeclaredField("User");
+            System.out.println(field);
+        }catch (Exception e){
+            System.out.println("error");
+        }
     }
 }
 
