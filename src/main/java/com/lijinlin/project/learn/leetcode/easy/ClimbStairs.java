@@ -21,7 +21,7 @@ package com.lijinlin.project.learn.leetcode.easy;
  */
 public class ClimbStairs {
     public static void main(String[] args) {
-        System.out.println(climbStairsDynamic(3));
+        System.out.println(climbStairs(4));
     }
 
     /**
@@ -47,5 +47,29 @@ public class ClimbStairs {
             f[i] = f[i-1] + f[i-2];
         }
         return f[n];
+    }
+
+    /**
+     * 迭代方法
+     * @param n
+     * @return
+     */
+    public static int climbStairsIteration(int n,int[] res) {
+        if(n == 1){
+            return 1;
+        }
+        if(n == 2){
+            return 2;
+        }
+        if(res[n] != 0){
+            return res[n];
+        }
+        int re = climbStairsIteration(n - 1,res) + climbStairsIteration(n - 2,res);
+        res[n] = re;
+        return re;
+    }
+    public static int climbStairs(int n) {
+        int[] res = new int[n+1];
+        return climbStairsIteration(n,res);
     }
 }
