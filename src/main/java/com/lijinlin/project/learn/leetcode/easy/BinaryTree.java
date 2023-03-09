@@ -27,27 +27,74 @@ public class BinaryTree {
     /**
      * 二叉树中序遍历
      * 中序： 左-自己-右-返回上一级  左-自己-右-返回上一级 左-自己-右-返回上一级 。。。。。
+     *
      * @param root
      * @return
      */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
-        result = middleOrder(root,result);
+        result = middleOrder(root, result);
         return result;
     }
-    public List<Integer> middleOrder(TreeNode node,List<Integer> list){
-        if(node == null){
+
+    public List<Integer> middleOrder(TreeNode node, List<Integer> list) {
+        if (node == null) {
             return list;
         }
-        if(node.left != null){
-            list = middleOrder(node.left,list);
+        if (node.left != null) {
+            list = middleOrder(node.left, list);
         }
         list.add(node.val);
-        if(node.right != null){
-            list = middleOrder(node.right,list);
+        if (node.right != null) {
+            list = middleOrder(node.right, list);
         }
         return list;
     }
 
+    /**
+     * 100. 相同的树
+     * 给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。
+     * <p>
+     * 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。
+     */
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+        boolean result = true;
+        //1先判断根是否为空
+        if (p == null && q == null) {
+            return result;
+        }
+        //从根节点开始判断是否相同，在判断左子树，再判断右子树递归判断
+        result = isSameTreeIterator(p,q);
+
+        return result;
+    }
+
+    public static boolean isSameTreeIterator(TreeNode p, TreeNode q){
+        if(p == null && q == null){
+            //节点相同 往下继续判断
+            return true;
+        }
+        if(p != null && q == null){
+            //节点不相同 则直接返回
+            return false;
+        }
+        if(p == null && q != null){
+            //节点不相同 则直接返回
+            return false;
+        }
+
+        if(p.val == q.val){
+            //节点相同 往下继续判断
+           boolean leftRes = isSameTreeIterator(p.left,q.left);
+           boolean rightRes = isSameTreeIterator(p.right,q.right);
+           if(leftRes && rightRes){
+               return true;
+           }
+           return false;
+        }else{
+            //节点不相同 则直接返回
+            return false;
+        }
+    }
 
 }

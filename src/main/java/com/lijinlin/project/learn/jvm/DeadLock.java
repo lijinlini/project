@@ -15,7 +15,7 @@ public class DeadLock {
                 synchronized (A){
                     try{
                         for(;;){
-                            Thread.sleep(1000);
+                            Thread.sleep(1);
                             System.out.println("已经锁住A");
                         }
                     }catch (Exception e){
