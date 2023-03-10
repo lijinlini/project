@@ -97,4 +97,41 @@ public class BinaryTree {
         }
     }
 
+    /**
+     * 101 给你一个二叉树的根节点 root ， 检查它是否轴对称。
+     * https://leetcode.cn/problems/symmetric-tree/
+     * @param root
+     * @return
+     */
+    public boolean isSymmetric(TreeNode root) {
+        boolean result = true;
+
+        result = isSymmetricDeep(root.left,root.right);
+        return result;
+    }
+    public boolean isSymmetricDeep(TreeNode root1,TreeNode root2) {
+        boolean result = true;
+        if(root1 == null && root2 == null){
+            return result;
+        }
+
+        if(root1 == null){
+            result = false;
+            return result;
+        }
+        if(root2 == null){
+            result = false;
+            return result;
+        }
+        if(root1.val != root2.val){
+            result = false;
+            return result;
+        }
+
+        boolean left = isSymmetricDeep(root1.left,root2.right);
+        boolean right = isSymmetricDeep(root1.right,root2.left);
+        return left && right;
+    }
+
+
 }
