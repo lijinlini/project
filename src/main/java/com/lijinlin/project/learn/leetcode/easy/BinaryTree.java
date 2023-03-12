@@ -1,7 +1,11 @@
 package com.lijinlin.project.learn.leetcode.easy;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BinaryTree {
     public class TreeNode {
@@ -97,18 +101,18 @@ public class BinaryTree {
         }
     }
 
-    /**
-     * 101 给你一个二叉树的根节点 root ， 检查它是否轴对称。
-     * https://leetcode.cn/problems/symmetric-tree/
-     * @param root
-     * @return
-     */
+
     public boolean isSymmetric(TreeNode root) {
         boolean result = true;
-
         result = isSymmetricDeep(root.left,root.right);
         return result;
     }
+    /**
+     * 101 给你一个二叉树的根节点 root ， 检查它是否轴对称。 深度优先
+     * https://leetcode.cn/problems/symmetric-tree/
+     * @param root1 root2
+     * @return
+     */
     public boolean isSymmetricDeep(TreeNode root1,TreeNode root2) {
         boolean result = true;
         if(root1 == null && root2 == null){
@@ -131,6 +135,38 @@ public class BinaryTree {
         boolean left = isSymmetricDeep(root1.left,root2.right);
         boolean right = isSymmetricDeep(root1.right,root2.left);
         return left && right;
+    }
+    /**
+     * 101 给你一个二叉树的根节点 root ， 检查它是否轴对称。广度优先
+     * https://leetcode.cn/problems/symmetric-tree/
+     * @param root1 root2
+     * @return
+     */
+    public boolean isSymmetricScope(TreeNode root1,TreeNode root2) {
+        boolean result = true;
+        Queue<TreeNode> queue = new LinkedList();
+        queue.add(root1);
+        queue.add(root2);
+        while(!queue.isEmpty()){
+            TreeNode poll1 = queue.poll();
+            TreeNode poll2 = queue.poll();
+            if(poll1 == null && poll2 == null){
+                continue;
+            }
+            if(poll1 == null || poll2 == null){
+                result = false;
+                break;
+            }
+            if(poll1.val != poll2.val){
+                result = false;
+                break;
+            }
+            queue.add(poll1.left);
+            queue.add(poll2.right);
+            queue.add(poll1.right);
+            queue.add(poll2.left);
+        }
+        return result;
     }
 
 
