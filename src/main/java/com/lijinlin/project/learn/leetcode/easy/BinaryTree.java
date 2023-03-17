@@ -169,5 +169,51 @@ public class BinaryTree {
         return result;
     }
 
+    /**
+     * 104. 二叉树的最大深度
+     * 给定一个二叉树，找出其最大深度。
+     *
+     * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
+     *
+     * 说明: 叶子节点是指没有子节点的节点。
+     *
+     * 递归
+     * @param root
+     * @return
+     */
+    public int maxDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        return Math.max(maxDepth(root.left),maxDepth(root.right)) + 1;
+    }
 
+    /**
+     * 循环迭代
+     * @param root
+     * @param
+     * @return
+     */
+    public int maxDepthIterator(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        int res = 0;
+        Queue<TreeNode> nodes = new LinkedList<>();
+        nodes.offer(root);
+        while (nodes.size() > 0){
+            int size = nodes.size();
+            while(size-- > 0){
+                TreeNode poll = nodes.poll();
+                if(poll.left != null){
+                    nodes.offer(poll.left);
+                }
+                if(poll.right != null){
+                    nodes.offer(poll.right);
+                }
+            }
+            res++;
+        }
+        return res;
+    }
 }
