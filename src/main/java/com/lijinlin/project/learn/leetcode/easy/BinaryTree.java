@@ -216,4 +216,27 @@ public class BinaryTree {
         }
         return res;
     }
+
+    /**
+     * 给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。
+     * 高度平衡 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。
+     * @param nums
+     * @return
+     */
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return sortedArrayToBST(nums,0,nums.length - 1);
+    }
+    //给定一个升序数组根据不停循环创建左右子树
+    public TreeNode sortedArrayToBST(int[] nums,int left,int right) {
+        if(left>right){
+            return null;
+        }
+        //先找到根节点，然后根据根节点分别构建左右子树
+        int rootNum = (left + right) / 2;
+        TreeNode root = new TreeNode();
+        root.val = nums[rootNum];
+        root.left = sortedArrayToBST(nums,left,rootNum - 1);
+        root.right = sortedArrayToBST(nums,rootNum + 1,right);
+        return root;
+    }
 }
