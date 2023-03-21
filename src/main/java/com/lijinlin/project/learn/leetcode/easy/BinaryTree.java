@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class BinaryTree {
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -223,11 +223,11 @@ public class BinaryTree {
      * @param nums
      * @return
      */
-    public TreeNode sortedArrayToBST(int[] nums) {
+    public static TreeNode sortedArrayToBST(Integer[] nums) {
         return sortedArrayToBST(nums,0,nums.length - 1);
     }
     //给定一个升序数组根据不停循环创建左右子树
-    public TreeNode sortedArrayToBST(int[] nums,int left,int right) {
+    public static TreeNode sortedArrayToBST(Integer[] nums,int left,int right) {
         if(left>right){
             return null;
         }
@@ -239,4 +239,35 @@ public class BinaryTree {
         root.right = sortedArrayToBST(nums,rootNum + 1,right);
         return root;
     }
+
+    public static void main(String[] args) {
+        Integer[] nums = {1,2,2,3,3,null,null,4,4};
+        TreeNode root = sortedArrayToBST(nums);
+        System.out.println(isBalanced(root));
+    }
+
+    /**
+     * 给定一个二叉树，判断它是否是高度平衡的二叉树。
+     *
+     * 本题中，一棵高度平衡二叉树定义为： 一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1 。
+     * @param node
+     * @return
+     */
+    public static int depth(TreeNode node){
+        if(node == null){
+            return 0;
+        }
+        return Math.max(depth(node.left),depth(node.right)) + 1;
+    }
+    public static boolean isBalanced(TreeNode root) {
+        if(root == null){
+            return true;
+        }
+        int leftNum = depth(root.left);
+        int rightNum = depth(root.right);
+        return Math.abs(leftNum - rightNum) <= 1 && isBalanced(root.left) && isBalanced(root.right);
+
+    }
+
+
 }

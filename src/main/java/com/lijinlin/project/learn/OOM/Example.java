@@ -17,19 +17,29 @@ public class Example {
         String password = "l5976877";
         Connection connection = DriverManager.getConnection(url, user, password);
 
+
         // 执行查询
         String sql = "SELECT * FROM t2";
         PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
+        ResultSet resultSet = null;
+        try{
+            resultSet = statement.executeQuery();
+        }catch (Exception e){
 
-        // 处理查询结果
-        while (resultSet.next()) {
-            // TODO: 处理每行记录
+        }finally {
+
+            // close the resultset, prepared statement and connection
+            try { if (resultSet != null) resultSet.close(); } catch (Exception e) {};
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (connection != null) connection.close(); } catch (Exception e) {};
+
+            // reset the MySQL connection
+            try {
+                DriverManager.getConnection("jdbc:mysql://localhost/?user=" + user + "&password=" + password + "&autoReconnect=true&failOverReadOnly=false&maxReconnects=10");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
-        // 关闭连接
-        resultSet.close();
-        statement.close();
-        connection.close();
     }
 }
