@@ -367,8 +367,42 @@ public class BinaryTree {
         return minDepth;
     }
 
+    /**
+     * 112. 路径总和
+     * 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。如果存在，返回 true ；否则，返回 false 。
+     *
+     * 叶子节点 是指没有子节点的节点。
+     *
+     * @param root
+     * @param targetSum
+     * @return
+     */
+    public static boolean hasPathSum(TreeNode root, int targetSum) {
+        if(root == null){
+            return false;
+        }
+        if(root.val == targetSum && root.left == null && root.right == null){
+            return true;
+        }
+        boolean leftFlag = false;
+        boolean rightFlag = false;
+        if(root.left != null){
+            leftFlag = hasPathSum(root.left,targetSum - root.val);
+        }
+        if(root.right != null){
+            rightFlag = hasPathSum(root.right,targetSum - root.val);
+        }
+        if(leftFlag || rightFlag){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
-        TreeNode root = new TreeNode();
+        TreeNode root = null;
+        System.out.println(hasPathSum(root,0));
+        /*TreeNode root = new TreeNode();
         root.val = 1;
         TreeNode rootLeft = new TreeNode();
         rootLeft.val = 2;
@@ -382,7 +416,7 @@ public class BinaryTree {
         root.right = rootRight;
         rootLeft.left = leftLeft;
         rootLeft.right = leftRight;
-        System.out.println(minDepth(root));
+        System.out.println(minDepth(root));*/
 
 
         /*TreeNode root = new TreeNode();
