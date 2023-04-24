@@ -24,7 +24,6 @@ public class BinaryTree {
         }
     }
 
-
     /**
      * 二叉树中序遍历
      * 中序： 左-自己-右-返回上一级  左-自己-右-返回上一级 左-自己-右-返回上一级 。。。。。
@@ -281,41 +280,6 @@ public class BinaryTree {
      * @param root
      * @return
      */
-   /* public static int minDepth(TreeNode root) {
-        int minDepth = 0;
-        if (root == null) {
-            return minDepth;
-        }
-        minDepth++;
-        if (root.left == null && root.right == null) {
-            return minDepth;
-        }
-        Queue<TreeNode> lineNodeList = new LinkedList<>();
-        minDepth++;
-        if (root.left != null) {
-            lineNodeList.add(root.left);
-        }
-        if (root.right != null) {
-            lineNodeList.add(root.right);
-        }
-        while (lineNodeList.size() > 0) {
-            TreeNode cur = lineNodeList.poll();
-            if (cur.left == null && cur.right == null) {
-                //当一个节点左右子节点都为空的时候就不在判断直接返回
-                break;
-            } else {
-                if (cur.left != null) {
-                    lineNodeList.add(cur.left);
-                }
-                if (cur.right != null) {
-                    lineNodeList.add(cur.right);
-                }
-                minDepth++;
-            }
-
-        }
-        return minDepth;
-    }*/
     public static int minDepth(TreeNode root) {
         if (root == null) {
             return 0;
@@ -324,24 +288,24 @@ public class BinaryTree {
             return 1;
         }
         int minDepth = 0;
-        Queue<HashMap<TreeNode,Integer>> lineNodeList = new LinkedList<>();
+        Queue<HashMap<TreeNode, Integer>> lineNodeList = new LinkedList<>();
         if (root.left != null) {
-            HashMap<TreeNode,Integer> map = new HashMap<>();
-            map.put(root.left,2);
+            HashMap<TreeNode, Integer> map = new HashMap<>();
+            map.put(root.left, 2);
             lineNodeList.add(map);
         }
         if (root.right != null) {
-            HashMap<TreeNode,Integer> map = new HashMap<>();
-            map.put(root.right,2);
+            HashMap<TreeNode, Integer> map = new HashMap<>();
+            map.put(root.right, 2);
             lineNodeList.add(map);
         }
         while (lineNodeList.size() > 0) {
-            HashMap<TreeNode,Integer> nodeMap = lineNodeList.poll();
+            HashMap<TreeNode, Integer> nodeMap = lineNodeList.poll();
             Set<TreeNode> treeNodeSet = nodeMap.keySet();
             Iterator<TreeNode> it = treeNodeSet.iterator();
             TreeNode cur = new TreeNode();
             Integer depth = null;
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 TreeNode key = it.next();
                 cur = key;
                 depth = nodeMap.get(key);
@@ -352,13 +316,13 @@ public class BinaryTree {
                 break;
             } else {
                 if (cur.left != null) {
-                    HashMap<TreeNode,Integer> map = new HashMap<>();
-                    map.put(cur.left,depth + 1);
+                    HashMap<TreeNode, Integer> map = new HashMap<>();
+                    map.put(cur.left, depth + 1);
                     lineNodeList.add(map);
                 }
                 if (cur.right != null) {
-                    HashMap<TreeNode,Integer> map = new HashMap<>();
-                    map.put(cur.right,depth + 1);
+                    HashMap<TreeNode, Integer> map = new HashMap<>();
+                    map.put(cur.right, depth + 1);
                     lineNodeList.add(map);
                 }
             }
@@ -370,7 +334,7 @@ public class BinaryTree {
     /**
      * 112. 路径总和
      * 给你二叉树的根节点 root 和一个表示目标和的整数 targetSum 。判断该树中是否存在 根节点到叶子节点 的路径，这条路径上所有节点值相加等于目标和 targetSum 。如果存在，返回 true ；否则，返回 false 。
-     *
+     * <p>
      * 叶子节点 是指没有子节点的节点。
      *
      * @param root
@@ -378,30 +342,178 @@ public class BinaryTree {
      * @return
      */
     public static boolean hasPathSum(TreeNode root, int targetSum) {
-        if(root == null){
+        if (root == null) {
             return false;
         }
-        if(root.val == targetSum && root.left == null && root.right == null){
+        if (root.val == targetSum && root.left == null && root.right == null) {
             return true;
         }
         boolean leftFlag = false;
         boolean rightFlag = false;
-        if(root.left != null){
-            leftFlag = hasPathSum(root.left,targetSum - root.val);
+        if (root.left != null) {
+            leftFlag = hasPathSum(root.left, targetSum - root.val);
         }
-        if(root.right != null){
-            rightFlag = hasPathSum(root.right,targetSum - root.val);
+        if (root.right != null) {
+            rightFlag = hasPathSum(root.right, targetSum - root.val);
         }
-        if(leftFlag || rightFlag){
+        if (leftFlag || rightFlag) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
+    /**
+     * 给你一个根节点，和树的高度创建一个满二叉树
+     * <p>
+     * 1
+     * 2          3
+     * 4    5     6     7
+     * 8 9 10 11 12 13 14 15
+     *
+     * @param height
+     * @param root
+     */
+    private static TreeNode createFullBinaryTree(int height, TreeNode root) {
+        if (height == 0) {
+            return root;
+        }
+        int curNum = 1;
+        root.val = curNum;
+        //上一行节点
+        Queue<TreeNode> preNodeQueue = new LinkedList<>();
+        //是否是第一次
+        boolean firstFlag = true;
+        for (int i = 1; i <= height; i++) {
+            //把每层节点放入一个队列中
+            Queue<TreeNode> curNodeQueue = new LinkedList<>();
+            Queue<TreeNode> tempNodeQueue = new LinkedList<>();
+            //计算这一层要创建多少个节点
+            double layerNum = Math.pow(2, i - 1);
+            for (int j = 1; j <= layerNum; j++) {
+                TreeNode node = new TreeNode();
+                node.val = curNum;
+                curNum++;
+                curNodeQueue.add(node);
+                tempNodeQueue.add(node);
+            }
+            while (preNodeQueue.size() > 0) {
+                TreeNode node = preNodeQueue.poll();
+                if (preNodeQueue.size() == 0 && firstFlag) {
+                    firstFlag = false;
+                    root = node;
+                }
+                TreeNode left = tempNodeQueue.poll();
+                TreeNode right = tempNodeQueue.poll();
+                node.left = left;
+                node.right = right;
+            }
+            preNodeQueue = curNodeQueue;
+        }
+        return root;
+    }
+
+    /**
+     * 二叉树查找
+     *
+     * @param num  查找的数值大小
+     * @param root 查找的二叉树根节点
+     * @return
+     */
+    private static TreeNode searchBinaryTree(int num, TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        if (root.val == num) {
+            return root;
+        }
+        if (num < root.val) {
+            searchBinaryTree(num, root.left);
+        }
+        if (num > root.val) {
+            searchBinaryTree(num, root.right);
+        }
+        return root;
+    }
+
+    /**
+     * 输出两个节点之间最近的路径
+     *
+     * @param num1
+     * @param num2
+     * @return
+     */
+    private static String searchBinaryTree(TreeNode root, int num1, int num2) {
+        List res = new ArrayList();
+        if (root == null) {
+            return res.toString();
+        }
+        Stack<String> num1Stack = new Stack<>();
+        num1Stack = searchNodeFromRoot(root, num1, num1Stack);
+        Stack<String> num2Stack = new Stack<>();
+        num2Stack = searchNodeFromRoot(root, num2, num2Stack);
+        Stack<String> num3Stack = new Stack<>();
+        String aroundNum = "";
+
+        if (Integer.valueOf(num1Stack.peek()) == num1 && Integer.valueOf(num2Stack.peek()) == num2) {
+            int i = 0;
+            while (num1Stack.size() > 0) {
+                if(i == 1){
+                    aroundNum = num1Stack.peek();
+                }
+                i++;
+                res.add(num1Stack.pop());
+            }
+            while (num2Stack.size() > 0) {
+                if(num2Stack.peek().equals(aroundNum)){
+                    List res1 = new ArrayList();
+                    res1.add(num1);
+                    res1.add(aroundNum);
+                    res1.add(num2);
+                    return res1.toString();
+                }
+                num3Stack.add(num2Stack.pop());
+            }
+            while (num3Stack.size() > 0) {
+                if (num3Stack.peek().equals(res.get(res.size()-1))){
+                    num3Stack.pop();
+                    continue;
+                }
+                res.add(num3Stack.pop());
+            }
+        }
+        return res.toString();
+    }
+
+    private static Stack<String> searchNodeFromRoot(TreeNode node, int num, Stack<String> numStack) {
+        Stack<String> newNumStack = new Stack<>();
+        newNumStack.addAll(numStack);
+        if (node != null) {
+            newNumStack.add(String.valueOf(node.val));
+        }
+        if (node != null && node.val == num) {
+            return newNumStack;
+        }
+        if (node != null) {
+            numStack = searchNodeFromRoot(node.left, num, newNumStack);
+            if(numStack != null){
+                return numStack;
+            }
+            numStack = searchNodeFromRoot(node.right, num, newNumStack);
+            if(numStack != null){
+                return numStack;
+            }
+
+        }
+        return null;
+    }
+
+
     public static void main(String[] args) {
-        TreeNode root = null;
-        System.out.println(hasPathSum(root,0));
+        TreeNode root = new TreeNode();
+        System.out.println(root = createFullBinaryTree(3, root));
+        System.out.println(searchBinaryTree(root, 4, 7));
+        // System.out.println(createFullBinaryTree(3, root));
         /*TreeNode root = new TreeNode();
         root.val = 1;
         TreeNode rootLeft = new TreeNode();
