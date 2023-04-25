@@ -8,7 +8,47 @@ import java.util.List;
  */
 public class YangHuiTriangle {
     public static void main(String[] args) {
-        System.out.println(generate(5));
+        System.out.println(getRow(4));
+    }
+    /**
+     * 给定一个非负索引 rowIndex，返回「杨辉三角」的第 rowIndex 行。
+     *
+     * 在「杨辉三角」中，每个数是它左上方和右上方的数的和。（这个效率低，可以使用动态规划优化）
+     *      *  *      *
+     *      *      *      *                   1
+     *      *      *      *                  1 1
+     *      *      *      * @param numRows  1 2 1
+     *      *      *      * @return        1 3 3 1
+     *      *      *      *               1 4 6 4 1
+     *      输入1 返回 1,1  输入0 返回1  输入 2 返回1,2,1
+     * @param rowIndex
+     * @return
+     */
+    public static List<Integer> getRow(int rowIndex) {
+        List<Integer> curLineList = new ArrayList<>();
+        if(rowIndex < 0){
+            return curLineList;
+        }
+        int row = ++ rowIndex ;
+        List<Integer> preLineList = new ArrayList<>();
+        for(int i = 1;i <= row; i++){
+            curLineList = new ArrayList<>();
+            for(int j = 0; j < i; j++){
+                if(preLineList.size() > 0){
+                    if(j - 1 < 0 || j == preLineList.size()){
+                        curLineList.add(1);
+                    }else{
+                        int curNum = preLineList.get(j - 1) + preLineList.get(j);
+                        curLineList.add(curNum);
+                    }
+                }else{
+                    curLineList.add(1);
+                }
+            }
+            preLineList = curLineList;
+
+        }
+        return curLineList;
     }
 
     /**
