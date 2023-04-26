@@ -8,8 +8,36 @@ import java.util.List;
  */
 public class YangHuiTriangle {
     public static void main(String[] args) {
-        System.out.println(getRow(4));
+        System.out.println(getRowBySA(3));
     }
+
+    /**
+     * 通过滚动数组的方式实现
+     * i的对称位 = i - j ，i是行数从0开始，j是滚动数组的下标从0开始
+     * 比如rowIndex = 4 则 1 4 6 4 1 i 为 4，j则是随着填充滚动数组不断改变
+     * @param rowIndex
+     * @return
+     */
+    public static List<Integer> getRowBySA(int rowIndex) {
+        int[] curLineList = new int[rowIndex + 1];
+        curLineList[0] = 1;
+        for(int i = 0; i < rowIndex + 1; i++){
+            for(int j = i / 2; j >= 0; j--){
+                int cur = curLineList[j];
+                if(j != 0){
+                    cur = cur + curLineList[j - 1];
+                }
+                curLineList[j] = cur;
+                curLineList[i - j] = curLineList[j];
+            }
+        }
+        List<Integer> res = new ArrayList<>();
+        for(int i : curLineList){
+            res.add(i);
+        }
+        return res;
+    }
+
     /**
      * 给定一个非负索引 rowIndex，返回「杨辉三角」的第 rowIndex 行。
      *
