@@ -18,7 +18,7 @@ public class NIOServer {
         Selector selector = Selector.open();
 
         //绑定一个端口6666，在服务器端监听
-        serverSocketChannel.socket().bind(new InetSocketAddress(6666));
+        serverSocketChannel.socket().bind(new InetSocketAddress(6667));
 
         //设置为非阻塞模式
         serverSocketChannel.configureBlocking(false);
@@ -39,6 +39,7 @@ public class NIOServer {
             System.out.println("selectionKeys数量=" + selectionKeys.size());
             //遍历selectionKeys，使用迭代器
             Iterator<SelectionKey> keyIterator = selectionKeys.iterator();
+            ByteBuffer buffer = ByteBuffer.allocate(1024);
             while (keyIterator.hasNext()) {
                 //获取到SelectKey
                 SelectionKey key = keyIterator.next();
@@ -52,17 +53,30 @@ public class NIOServer {
                     //将当前 socketChannel注册到selector,关注事件为OP_READ（读）
                     // 同时给socketChannel关联一个buffer
                     socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
-                    System.out.println("客户端连接后，注册的selectioneky数量=" + selector.keys().size());
+                    System.out.println("客户端连接后，注册的selectionKey数量=" + selector.keys().size());
                 }
-                if (key.isReadable()) {
+                /*if (key.isReadable()) {
                     //发生OP_READ读事件
                     //通过key反向获取到对应channel
                     SocketChannel channel = (SocketChannel) key.channel();
+
                     //获取到该channel关联的buffer
                     ByteBuffer buffer = (ByteBuffer) key.attachment();
 
                     channel.read(buffer);
                     System.out.println("form客户端" + new String(buffer.array()));
+                }*/
+                if (key.isReadable()) {
+                    //发生OP_READ读事件
+                    //通过key反向获取到对应channel
+                    SocketChannel channel = (SocketChannel) key.channel();
+                    //运行读事件数据读取到Buffer中
+                    channel.read(buffer);
+                    String request = new String(buffer.array()).trim();
+                    buffer.clear();
+                    System.out.println("From client request" + request);
+                    String response = "\r\n From server response" + request + "ok. \r\n\r\n";
+                    channel.write(ByteBuffer.wrap(response.getBytes()));
                 }
 
                 //手动从集合中移除当前的selectionKey,防止重复操作
