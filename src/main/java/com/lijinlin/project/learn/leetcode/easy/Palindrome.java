@@ -1,6 +1,8 @@
 package com.lijinlin.project.learn.leetcode.easy;
 
 
+import com.alibaba.druid.sql.visitor.functions.Char;
+
 public class Palindrome {
     public static void main(String[] args) {
         int x = 123321;
@@ -16,9 +18,6 @@ public class Palindrome {
      * 例如，121 是回文，而 123 不是。
      * 输入：x = 121
      * 输出：true
-     * 来源：力扣（LeetCode）
-     * 链接：https://leetcode-cn.com/problems/palindrome-number
-     * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
      * 执行时间 7ms 内存消耗40MB左右
      *
      * @param x
@@ -50,5 +49,26 @@ public class Palindrome {
             x = x / 10;
         }
         return x == reverseNum || x == reverseNum / 10;
+    }
+    public boolean isPalindrome(String s) {
+        char[] chars = s.toCharArray();
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i = 0;i < chars.length;i++){
+            if(Character.isLetterOrDigit(chars[i])){
+                stringBuffer.append(Character.toLowerCase(chars[i]));
+            }
+        }
+        int right = stringBuffer.length() - 1;
+        int left = 0;
+        boolean result = true;
+        while(right > left){
+            if (stringBuffer.charAt(right) != stringBuffer.charAt(left)){
+                result = false;
+                break;
+            }
+            right--;
+            left++;
+        }
+        return result;
     }
 }
