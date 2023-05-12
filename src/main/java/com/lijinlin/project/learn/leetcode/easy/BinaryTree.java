@@ -23,6 +23,58 @@ public class BinaryTree {
             this.right = right;
         }
     }
+    /**
+     * 二叉树后序遍历
+     * 144.给你二叉树的根节点 root ，返回它节点值的 后序 遍历。
+     * 后序：左右根 返回上一级 左右根 返回上一级
+     * @param root
+     * @return
+     */
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        result = postOrder(root, result);
+        return result;
+    }
+    public List<Integer> postOrder(TreeNode node, List<Integer> list){
+       if(node == null){
+           return list;
+
+       }
+       if(node.left != null){
+           list = postOrder(node.left,list);
+       }
+        if(node.right != null){
+            list = postOrder(node.right,list);
+        }
+        list.add(node.val);
+        return list;
+    }
+
+    /**
+     * 二叉树前序遍历
+     * 144.给你二叉树的根节点 root ，返回它节点值的 前序 遍历。
+     * 前序：根-左-右 返回上一级 根左右 返回上一级
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        result = preOrder(root, result);
+        return result;
+    }
+    public List<Integer> preOrder(TreeNode node, List<Integer> list){
+        if(node == null){
+            return list;
+        }
+        list.add(node.val);
+        if(node.left != null){
+            list = preOrder(node.left,list);
+        }
+        if(node.right != null){
+            list = preOrder(node.right,list);
+        }
+        return list;
+    }
 
     /**
      * 二叉树中序遍历
