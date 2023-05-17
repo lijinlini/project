@@ -31,7 +31,7 @@ public class LogAspect {
     public void requestServer(){
 
     }
-    @Around("requestServer() && @annotation(StatsService)")
+  /*  @Around("requestServer() && @annotation(StatsService)")
     public void doA(ProceedingJoinPoint joinPoint){
         try {
             logger.info("doA");
@@ -40,5 +40,5 @@ public class LogAspect {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }
