@@ -1,4 +1,4 @@
-package com.lijinlin.project.learn;
+package com.lijinlin.project.learn.dataStructureAndAlgorithm.sort;
 
 public class QuickSort  {
     /*public static int[] quickSort(int[] arr,int begin, int end){//如果区间不只一个数
@@ -37,24 +37,16 @@ public class QuickSort  {
     public static int[] quickSort(int[] nums, int left, int right) {
         if (left < right) {
             int pivot = nums[left];
-
             while (left < right) {
-
                 while (left < right && nums[right] >= pivot) {
-
                     right--;
-
                 }
                 nums[left] = nums[right];
-
                 while (left < right && nums[left] <= pivot) {
-
                     left++;
                 }
                 nums[right] = nums[left];
-
             }
-
             nums[left] = pivot;
             quickSort(nums, left, left - 1);
             quickSort(nums, left + 1, right);
