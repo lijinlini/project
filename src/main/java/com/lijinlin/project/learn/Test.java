@@ -26,8 +26,12 @@ public class Test {
        return null;
     }
     public static void main(String[] args) {
-        String a = "aBcD";
-        System.out.println(a.toLowerCase());
+        String a = "1271";
+        String b = "1271";
+        System.out.println(a.equals(b));
+        System.out.println(a == b);
+        System.out.println(a.hashCode());
+        System.out.println(b.hashCode());
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {
