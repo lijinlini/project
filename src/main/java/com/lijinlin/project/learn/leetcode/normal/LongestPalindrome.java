@@ -18,7 +18,7 @@ public class LongestPalindrome {
     }
 
     /**
-     * 东态规划方法计算最大回文子串
+     * 动态规划方法计算最大回文子串
      *
      * @param s
      * @return

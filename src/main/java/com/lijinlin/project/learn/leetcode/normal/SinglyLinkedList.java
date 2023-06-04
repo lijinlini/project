@@ -50,10 +50,56 @@ public class SinglyLinkedList {
         return headHead.next;
     }
 
+    /**
+     * 24. 两两交换链表中的节点
+     * 给你一个链表，两两交换其中相邻的节点，并返回交换后链表的头节点。你必须在不修改节点内部的值的情况下完成本题（即，只能进行节点交换）。
+     * @param head
+     * @return
+     */
+    public static ListNode swapPairs(ListNode head) {
+        if(head != null && head.next == null){
+            return head;
+        }
+        ListNode newHead = null;
+        ListNode cur = head;
+        ListNode pre = null;
+        while(cur != null && cur.next != null){
+            //进行交换
+            ListNode curNext = cur.next;
+            ListNode tempNextNext = null;
+            if(curNext.next != null){
+                tempNextNext = curNext.next;
+            }
+            cur.next = tempNextNext;
+            curNext.next = cur;
+            if(pre != null){
+                pre.next = curNext;
+            }
+            if(newHead == null){
+                newHead = curNext;
+            }
+            //每次跳過一個
+            pre = cur;
+            cur = tempNextNext;
+        }
+        return newHead;
+    }
+
     public static void main(String[] args) {
-        ListNode node1 = new ListNode(1);
+        /*ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
         node1.next = node2;
-        System.out.println(removeNthFromEnd(node1,2).val);
+        System.out.println(removeNthFromEnd(node1,2).val);*/
+
+
+        ListNode node1 = new ListNode(1);
+      /*  ListNode node2 = new ListNode(2);
+        ListNode node3 = new ListNode(3);
+        ListNode node4 = new ListNode(4);*/
+      /*  node1.next = node2;
+        node2.next = node3;
+        node3.next = node4;*/
+        ListNode newHead = swapPairs(node1);
+        System.out.println(newHead);
     }
 }

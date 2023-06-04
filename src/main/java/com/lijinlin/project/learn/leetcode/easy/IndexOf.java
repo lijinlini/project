@@ -1,6 +1,7 @@
 package com.lijinlin.project.learn.leetcode.easy;
 
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 28. 实现 strStr()
@@ -33,6 +34,8 @@ public class IndexOf {
     public static void main(String[] args) {
         String haystack = "hello", needle = "ll";
         System.out.println(strStrKMP(haystack, needle));
+        AtomicInteger a = new AtomicInteger(5);
+        a.compareAndSet(5,10);
     }
 
     public static int strStrKMP(String haystack, String needle) {

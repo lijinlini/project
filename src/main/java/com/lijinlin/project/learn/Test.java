@@ -6,6 +6,8 @@ import com.lijinlin.project.learn.DesignPattern.bridging.XiaoMi;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openjdk.jol.info.ClassLayout;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -16,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 public class Test {
@@ -32,6 +36,7 @@ public class Test {
         System.out.println(a == b);
         System.out.println(a.hashCode());
         System.out.println(b.hashCode());
+
     }
 
     public <K, V extends Number> Map<Long, V> sortMap(Map<Long, V> map) {

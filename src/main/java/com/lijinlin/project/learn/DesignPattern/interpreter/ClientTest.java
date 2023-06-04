@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ClientTest {
     public static void main(String[] args) throws IOException {
@@ -11,6 +12,7 @@ public class ClientTest {
         HashMap<String,Integer> var = getValue(expStr);//var {a=10,b=20}
         Calculator calculator = new Calculator(expStr);
         System.out.println("运算结果：" + expStr + "=" + calculator.run(var));
+
     }
     /**
      * 获得表达式

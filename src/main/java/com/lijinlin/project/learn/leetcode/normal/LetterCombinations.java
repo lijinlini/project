@@ -2,9 +2,7 @@ package com.lijinlin.project.learn.leetcode.normal;
 
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 17
@@ -37,6 +35,23 @@ public class LetterCombinations {
         String[] res = str.split("");
         return res;
     }
+    private static String[] getLetterByMap(String num) {
+        if (num == null || Integer.valueOf(num) < 2 || Integer.valueOf(num) > 9) {
+            return null;
+        }
+        Map<String, String> phoneMap = new HashMap<String, String>() {{
+            put("2", "abc");
+            put("3", "def");
+            put("4", "ghi");
+            put("5", "jkl");
+            put("6", "mno");
+            put("7", "pqrs");
+            put("8", "tuv");
+            put("9", "wxyz");
+        }};
+
+        return phoneMap.get(num).split("");
+    }
     /**
      * 23
      * abc
@@ -51,20 +66,20 @@ public class LetterCombinations {
             if(numStr == null|| numStr == ""){
                 break;
             }
-            if(getLetterByNum(Integer.valueOf(numStr)) == null
-                    || getLetterByNum(Integer.valueOf(numStr)).equals("")){
+            String[] letters = getLetterByMap(numStr);
+            if(letters == null
+                    || letters.length == 0){
                 break;
             }
-            String[] tem = getLetterByNum(Integer.valueOf(numStr));
             if (resList.size() == 0) {
-                resList.addAll(Arrays.asList(tem));
+                resList.addAll(Arrays.asList(letters));
             } else {
                 List<String> currList = new ArrayList<>();
                 for (int i = 0; i < resList.size(); i++) {
                     List<String> curList = new ArrayList<>();
                     String cur = resList.get(i);
-                    for(int j = 0;j<tem.length;j++ ){
-                        String a = cur + tem[j];
+                    for(int j = 0;j<letters.length;j++ ){
+                        String a = cur + letters[j];
                         curList.add(a);
                     }
                     currList.addAll(curList);
