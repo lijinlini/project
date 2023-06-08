@@ -1,47 +1,109 @@
 package com.lijinlin.project.learn;
 
-import java.util.Stack;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class SelftStack {
-    static class Node<E> {
-        Node<E> next = null;
-        E data;
-        public Node(E data) {
+    static class Node<Integer> {
+        Node<Integer> next = null;
+        Integer data;
+
+        public Node(Integer data) {
             this.data = data;
         }
     }
-    //value 是否是before，如果是就就设置为target
-    boolean testAndSet(int value,int target,int before){
-        //空实现
+
+    //top 是否是pre，如果是就就设置为node
+    static boolean testAndSet(int value, int target,int before) {
         return true;
     }
-    static class ListNodeStack<E> {
-        Node<E> top = null;
+
+    static class ListNodeStack<Integer> {
+        Node<Integer> top = null;
+        volatile Object lock = null;
+
 
         boolean isEmpty() {
             return top == null;
         }
 
-        public void push(E item) {
-            Node<E> node = new Node<E>(item);
-            node.next = top;
-            top = node;
+        public void pushByCas(Integer item) {
+            Node<Integer> node = new Node<Integer>(item);
+            int pre = (int)top.data;
+            testAndSet((int)top.data,(int)item,pre);
+        }
+        public void pushByLock(Integer item) {
+            Node<Integer> node = new Node<Integer>(item);
+            Node<Integer> pre = top;
+            synchronized(this){
+                node.next = top;
+                top = node;
+            }
         }
 
-        public E pop() {
+        public Integer pop() {
             if (this.isEmpty()) return null;
-            E data = top.data;
+            Integer data = top.data;
             top = top.next;
             return data;
         }
 
-        public E peek() {
+        public Integer peek() {
             if (this.isEmpty()) return null;
             return top.data;
         }
     }
 
-    public static void main(String[] args) {
+    static class Runnable01 implements Runnable {
+        private CountDownLatch latch;
+        private ListNodeStack stack;
+        private int i;
+        private int j;
 
+        public Runnable01(CountDownLatch latch, ListNodeStack stack, int i, int j) {
+            this.latch = latch;
+            this.stack = stack;
+            this.i = i;
+            this.j = j;
+        }
+
+        @Override
+        public void run() {
+            /*try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }*/
+            for (int begin = i; begin < j; begin++) {
+                stack.pushByLock(begin);
+            }
+            latch.countDown();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(2);
+        ListNodeStack stack = new ListNodeStack();
+        ThreadPoolExecutor exs = new ThreadPoolExecutor(5, 10, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
+        Runnable01 runnable01 = new Runnable01(countDownLatch, stack,0,10);
+        Runnable01 runnable02 = new Runnable01(countDownLatch, stack,10,20);
+        exs.execute(runnable01);
+        exs.execute(runnable02);
+        System.out.println("即将等待");
+        countDownLatch.await();
+        System.out.println("等待结束");
+        int i = 0;
+        while (true) {
+            if (stack.peek() != null) {
+                i++;
+                System.out.println(stack.pop());
+
+            } else {
+                break;
+            }
+        }
+        System.out.println(i);
     }
 }
