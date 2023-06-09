@@ -50,12 +50,67 @@ public class SearchArray {
                 }
             }
         }
+        return result;
+    }
 
+    /**
+     * 34. 在排序数组中查找元素的第一个和最后一个位置
+     * 给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。
+     * <p>
+     * 如果数组中不存在目标值 target，返回 [-1, -1]。
+     * <p>
+     * 你必须设计并实现时间复杂度为 O(log n) 的算法解决此问题。
+     * 0123 4 56789
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
+    public static int[] searchRange(int[] nums, int target) {
+        int[] result = {-1, -1};
+        if (nums.length == 0) {
+            return result;
+        }
+        if(nums.length == 1){
+            if(target == nums[0]){
+                result[0] = 0;
+                result[1] = 0;
+                return result;
+            }
+        }
+        int middleIndex = (nums.length - 1) / 2;
+        int rightIndex = nums.length - 1;
+        int leftIndex = 0;
+        while (leftIndex <= rightIndex) {
+            middleIndex = (rightIndex + leftIndex) / 2;
+            if (target == nums[middleIndex]) {
+                int leftResult = middleIndex;
+                while(leftResult > 0 && target == nums[leftResult - 1]){
+                    leftResult --;
+                }
+                int rightResult = middleIndex;
+                while(rightResult < rightIndex && target == nums[rightResult + 1]){
+                    rightResult ++;
+                }
+                result[0] = leftResult;
+                result[1] = rightResult;
+                return result;
+            }
+            if (nums[middleIndex] > target) {
+                rightIndex = middleIndex - 1;
+            }
+            if (nums[middleIndex] < target) {
+                leftIndex = middleIndex + 1;
+            }
+        }
         return result;
     }
 
     public static void main(String[] args) {
-        int[] a = {4,5,6,7,0,1,2}; //
-        System.out.println(search(a,0));
+        /*int[] a = {4, 5, 6, 7, 0, 1, 2}; //
+        System.out.println(search(a, 0));*/
+
+        int[] a = {1,2, 3}; //
+        System.out.println(searchRange(a, 2));
     }
 }
