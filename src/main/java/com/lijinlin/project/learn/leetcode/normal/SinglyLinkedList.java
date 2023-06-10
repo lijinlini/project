@@ -101,5 +101,7 @@ public class SinglyLinkedList {
         node3.next = node4;*/
         ListNode newHead = swapPairs(node1);
         System.out.println(newHead);
+
+
     }
 }
